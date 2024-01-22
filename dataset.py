@@ -144,6 +144,54 @@ class RasterTransform:
         dem = TF.to_tensor(dem)
         so = TF.to_tensor(so)
 
+        dem = TF.normalize(dem, 318.90567, 16.467052)
+
         so = so.long()
 
         return {'DEM': dem, 'SO': so.squeeze()}
+
+
+
+class RGB_RasterTilesDataset(Dataset):
+    def __init__(self, dem_dir, so_dir, rgb_dir, transform=None):
+        """
+        Custom dataset to load DEM, SO, and RGB tiles.
+
+        :param dem_dir: Directory where DEM tiles are stored.
+        :param so_dir: Directory where SO tiles are stored.
+        :param rgb_dir: Directory where RGB tiles are stored.
+        :param transform: Optional transform to be applied on a sample.
+        """
+        self.dem_dir = dem_dir
+        self.so_dir = so_dir
+        self.rgb_dir = rgb_dir
+        self.transform = transform
+
+        self.filenames = [f for f in os.listdir(dem_dir) if os.path.isfile(os.path.join(dem_dir, f))]
+
+    def __len__(self):
+        return len(self.filenames)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+
+        dem_file = os.path.join(self.dem_dir, self.filenames[idx])
+        so_file = os.path.join(self.so_dir, self.filenames[idx])
+        # Assuming RGB tiles follow a similar naming convention
+        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_{self.filenames[idx]}') for k in range(6)]
+
+        dem_image = Image.open(dem_file)
+        so_image = Image.open(so_file)
+        rgb_images = [Image.open(file) for file in rgb_files]
+
+        dem_array = np.array(dem_image)
+        so_array = np.array(so_image)
+        rgb_arrays = [np.array(image) for image in rgb_images]
+
+        sample = {'DEM': dem_array, 'SO': so_array, 'RGB': rgb_arrays}
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample

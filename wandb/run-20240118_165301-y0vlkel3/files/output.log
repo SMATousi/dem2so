@@ -1,0 +1,149 @@
+cuda
+Data is loaded
+  0%|                                                                                                                    | 0/582 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+Epoch [1/500] - Loss: 2.2674686908721924
+{'Train/iou': 0.021808991700453303}
+{'Validation/iou': 0.08026776994977679}
+Epoch [2/500] - Loss: 2.245701313018799
+{'Train/iou': 0.03706196047875621}
+{'Validation/iou': 0.08026776994977679}
+Epoch [3/500] - Loss: 2.1937451362609863
+{'Train/iou': 0.057826702947897816}
+{'Validation/iou': 0.08212984785028077}
+Epoch [4/500] - Loss: 2.1812238693237305
+{'Train/iou': 0.0487619852327717}
+{'Validation/iou': 0.08240500037290052}
+Epoch [5/500] - Loss: 2.1394991874694824
+{'Train/iou': 0.07488274598528852}
+{'Validation/iou': 0.08017753109765534}
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+Epoch [6/500] - Loss: 2.1235923767089844
+{'Train/iou': 0.06686879584185665}
+{'Validation/iou': 0.07921190092117976}
+Epoch [7/500] - Loss: 2.0873498916625977
+{'Train/iou': 0.06981323971929496}
+{'Validation/iou': 0.07887188716503636}
+Epoch [8/500] - Loss: 2.1027297973632812
+{'Train/iou': 0.07577028782535215}
+{'Validation/iou': 0.07940463009433284}
+Epoch [9/500] - Loss: 2.0560662746429443
+{'Train/iou': 0.0905120183374232}
+{'Validation/iou': 0.07897916329710099}
+Epoch [10/500] - Loss: 2.0387964248657227
+{'Train/iou': 0.08155821852461208}
+{'Validation/iou': 0.07764813135035921}
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+Epoch [11/500] - Loss: 2.028773784637451
+{'Train/iou': 0.08403008769929468}
+{'Validation/iou': 0.07683390052681174}
+Epoch [12/500] - Loss: 1.9877707958221436
+{'Train/iou': 0.09835065672173254}
+{'Validation/iou': 0.07734893403728225}
+Epoch [13/500] - Loss: 2.019974946975708
+{'Train/iou': 0.085676503759632}
+{'Validation/iou': 0.07940569954027808}
+Epoch [14/500] - Loss: 1.9807381629943848
+{'Train/iou': 0.0971893329497362}
+{'Validation/iou': 0.08177370224851699}
+Epoch [15/500] - Loss: 1.969368815422058
+{'Train/iou': 0.0798373892733405}
+{'Validation/iou': 0.08209517138675888}
+Epoch [16/500] - Loss: 1.9365816116333008
+{'Train/iou': 0.1134827261872037}
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+{'Validation/iou': 0.0820028717545455}
+Epoch [17/500] - Loss: 1.9650695323944092
+{'Train/iou': 0.09257987495581631}
+{'Validation/iou': 0.08250509732973786}
+Epoch [18/500] - Loss: 1.9627805948257446
+{'Train/iou': 0.07928420417161676}
+{'Validation/iou': 0.08374930029765207}
+Epoch [19/500] - Loss: 1.9416322708129883
+{'Train/iou': 0.07176829294699323}
+{'Validation/iou': 0.08353584106499036}
+Epoch [20/500] - Loss: 1.9623095989227295
+{'Train/iou': 0.08308794473508832}
+{'Validation/iou': 0.08415994778011891}
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]Exception ignored in: <function _MultiProcessingDataLoaderIter.__del__ at 0x7fafa8ed08c0>
+Traceback (most recent call last):
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1466, in __del__
+    self._shutdown_workers()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1430, in _shutdown_workers
+    w.join(timeout=_utils.MP_STATUS_CHECK_INTERVAL)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/multiprocessing/process.py", line 140, in join
+    res = self._popen.wait(timeout)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/multiprocessing/popen_fork.py", line 45, in wait
+    if not wait([self.sentinel], timeout):
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/multiprocessing/connection.py", line 921, in wait
+    ready = selector.select(timeout)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt:
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+Epoch [21/500] - Loss: 1.9124789237976074
+{'Train/iou': 0.10910552424464635}
+{'Validation/iou': 0.084958856617921}
+Epoch [22/500] - Loss: 1.9076409339904785
+{'Train/iou': 0.09439531365345845}
+{'Validation/iou': 0.08132156063709962}
+Epoch [23/500] - Loss: 1.9244005680084229
+{'Train/iou': 0.070454957105681}
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+{'Validation/iou': 0.08082419726424848}
+Epoch [24/500] - Loss: 1.9078127145767212
+{'Train/iou': 0.08340424745986681}
+{'Validation/iou': 0.08086174213984254}
+Epoch [25/500] - Loss: 1.8931832313537598
+{'Train/iou': 0.1090796587876486}
+{'Validation/iou': 0.08089744340516233}
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/64 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/582 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "train.py", line 143, in <module>
+    iou = mIOU(so_image, outputs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/utils.py", line 79, in mIOU
+    if target_inds.long().sum().item() == 0:
+KeyboardInterrupt

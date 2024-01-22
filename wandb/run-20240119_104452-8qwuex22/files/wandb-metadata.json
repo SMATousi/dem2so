@@ -1,0 +1,84 @@
+{
+    "os": "Linux-5.15.0-91-generic-x86_64-with-debian-bookworm-sid",
+    "python": "3.7.13",
+    "heartbeatAt": "2024-01-19T16:44:53.171866",
+    "startedAt": "2024-01-19T16:44:52.532243",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "testing_code.ipynb",
+    "root": "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so",
+    "git": {
+        "remote": "git@github.com:SMATousi/dem2so.git",
+        "commit": "e6e1b4dff0937e28c29cb66e3253a44944f98d04"
+    },
+    "email": "mohamadali.tousi@gmail.com",
+    "host": "macula",
+    "username": "SMATousi",
+    "executable": "/home/macula/SMATousi/.conda/envs/mac-deep/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3104.926625,
+        "min": 800.0,
+        "max": 4000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1110.2,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 3400.0,
+            "min": 800.0,
+            "max": 4000.0
+        }
+    ],
+    "disk": {
+        "total": 91.10879898071289,
+        "used": 66.11444473266602
+    },
+    "gpu": "NVIDIA GeForce GTX 960",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 960",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 31.28219985961914
+    }
+}

@@ -1,4 +1,17 @@
 import numpy as np
+import os
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, random_split
+from torchvision import transforms
+from sklearn.model_selection import train_test_split
+import random
+import numpy as np
+from tqdm import tqdm
+import argparse
+import wandb
+from torch.nn import functional as F
 
 def calculate_metrics(predicted, desired, num_classes=9):
     """
@@ -38,6 +51,7 @@ def calculate_metrics(predicted, desired, num_classes=9):
             iou = np.sum(intersection) / np.sum(union)
             dice = 2 * np.sum(intersection) / (np.sum(predicted_cls) + np.sum(desired_cls))
 
+        print(iou)
         iou_list.append(iou)
         dice_list.append(dice)
 
@@ -46,3 +60,29 @@ def calculate_metrics(predicted, desired, num_classes=9):
     mean_dice = np.nanmean(dice_list)
 
     return accuracy, mean_iou, mean_dice
+
+
+def mIOU(label, pred, num_classes=9):
+    pred = F.softmax(pred, dim=1)              
+    pred = torch.argmax(pred, dim=1).squeeze(1)
+    iou_list = list()
+    present_iou_list = list()
+
+    pred = pred.view(-1)
+    label = label.view(-1)
+    # Note: Following for loop goes from 0 to (num_classes-1)
+    # and ignore_index is num_classes, thus ignore_index is
+    # not considered in computation of IoU.
+    for sem_class in range(num_classes):
+        pred_inds = (pred == sem_class)
+        target_inds = (label == sem_class)
+        if target_inds.long().sum().item() == 0:
+            iou_now = float('nan')
+        else: 
+            intersection_now = (pred_inds[target_inds]).long().sum().item()
+            union_now = pred_inds.long().sum().item() + target_inds.long().sum().item() - intersection_now
+            iou_now = float(intersection_now) / float(union_now)
+            present_iou_list.append(iou_now)
+            # print(iou_now)
+        iou_list.append(iou_now)
+    return np.mean(present_iou_list)

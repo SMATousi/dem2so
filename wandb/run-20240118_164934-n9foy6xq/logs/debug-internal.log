@@ -1,0 +1,185 @@
+2024-01-18 16:49:35,038 INFO    StreamThr :3826664 [internal.py:wandb_internal():89] W&B internal server running at pid: 3826664, started at: 2024-01-18 16:49:35.019229
+2024-01-18 16:49:35,040 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: status
+2024-01-18 16:49:35,041 INFO    WriterThread:3826664 [datastore.py:open_for_write():85] open: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/run-n9foy6xq.wandb
+2024-01-18 16:49:35,125 DEBUG   SenderThread:3826664 [sender.py:send():369] send: header
+2024-01-18 16:49:35,125 DEBUG   SenderThread:3826664 [sender.py:send():369] send: run
+2024-01-18 16:49:35,428 INFO    SenderThread:3826664 [dir_watcher.py:__init__():211] watching files in: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files
+2024-01-18 16:49:35,428 INFO    SenderThread:3826664 [sender.py:_start_run_threads():1103] run started: n9foy6xq with start time 1705618175.020621
+2024-01-18 16:49:35,428 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: summary_record
+2024-01-18 16:49:35,434 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: check_version
+2024-01-18 16:49:35,490 INFO    SenderThread:3826664 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2024-01-18 16:49:35,491 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: check_version
+2024-01-18 16:49:35,601 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: run_start
+2024-01-18 16:49:35,616 DEBUG   HandlerThread:3826664 [system_info.py:__init__():31] System info init
+2024-01-18 16:49:35,616 DEBUG   HandlerThread:3826664 [system_info.py:__init__():46] System info init done
+2024-01-18 16:49:35,616 INFO    HandlerThread:3826664 [system_monitor.py:start():181] Starting system monitor
+2024-01-18 16:49:35,617 INFO    SystemMonitor:3826664 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2024-01-18 16:49:35,617 INFO    HandlerThread:3826664 [system_monitor.py:probe():201] Collecting system info
+2024-01-18 16:49:35,618 INFO    SystemMonitor:3826664 [interfaces.py:start():190] Started cpu monitoring
+2024-01-18 16:49:35,620 INFO    SystemMonitor:3826664 [interfaces.py:start():190] Started disk monitoring
+2024-01-18 16:49:35,621 INFO    SystemMonitor:3826664 [interfaces.py:start():190] Started gpu monitoring
+2024-01-18 16:49:35,624 INFO    SystemMonitor:3826664 [interfaces.py:start():190] Started memory monitoring
+2024-01-18 16:49:35,626 INFO    SystemMonitor:3826664 [interfaces.py:start():190] Started network monitoring
+2024-01-18 16:49:35,660 DEBUG   HandlerThread:3826664 [system_info.py:probe():195] Probing system
+2024-01-18 16:49:35,716 DEBUG   HandlerThread:3826664 [system_info.py:_probe_git():180] Probing git
+2024-01-18 16:49:35,791 DEBUG   HandlerThread:3826664 [system_info.py:_probe_git():188] Probing git done
+2024-01-18 16:49:35,791 DEBUG   HandlerThread:3826664 [system_info.py:probe():240] Probing system done
+2024-01-18 16:49:35,791 DEBUG   HandlerThread:3826664 [system_monitor.py:probe():210] {'os': 'Linux-5.15.0-73-generic-x86_64-with-debian-bookworm-sid', 'python': '3.7.13', 'heartbeatAt': '2024-01-18T22:49:35.660974', 'startedAt': '2024-01-18T22:49:34.384818', 'docker': None, 'cuda': None, 'args': ('--projectname', 'DEM2SO', '--runname', 'Unet_test_iou_1', '--modelname', 'Unet_1', '--savingstep', '50', '--logging', '--nottest', '--epochs', '500'), 'state': 'running', 'program': 'train.py', 'codePath': 'train.py', 'git': {'remote': 'git@github.com:SMATousi/dem2so.git', 'commit': 'e6e1b4dff0937e28c29cb66e3253a44944f98d04'}, 'email': 'mohamadali.tousi@gmail.com', 'root': '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so', 'host': 'pupil', 'username': 'SMATousi', 'executable': '/home/macula/SMATousi/.conda/envs/mac-deep/bin/python3', 'cpu_count': 16, 'cpu_count_logical': 24, 'cpu_freq': {'current': 3090.4590000000003, 'min': 800.0, 'max': 4716.666666666667}, 'cpu_freq_per_core': [{'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 3200.0, 'min': 800.0, 'max': 5100.0}, {'current': 887.43, 'min': 800.0, 'max': 5200.0}, {'current': 3200.0, 'min': 800.0, 'max': 5200.0}, {'current': 3200.0, 'min': 800.0, 'max': 5200.0}, {'current': 3200.0, 'min': 800.0, 'max': 5200.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}, {'current': 3200.0, 'min': 800.0, 'max': 3900.0}], 'disk': {'total': 878.0525245666504, 'used': 175.63449478149414}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 31.04662322998047}}
+2024-01-18 16:49:35,791 INFO    HandlerThread:3826664 [system_monitor.py:probe():211] Finished collecting system info
+2024-01-18 16:49:35,791 INFO    HandlerThread:3826664 [system_monitor.py:probe():214] Publishing system info
+2024-01-18 16:49:35,791 DEBUG   HandlerThread:3826664 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2024-01-18 16:49:35,849 DEBUG   HandlerThread:3826664 [system_info.py:_save_pip():67] Saving pip packages done
+2024-01-18 16:49:35,850 DEBUG   HandlerThread:3826664 [system_info.py:_save_conda():75] Saving list of conda packages installed into the current environment
+2024-01-18 16:49:36,430 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/requirements.txt
+2024-01-18 16:49:36,430 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-summary.json
+2024-01-18 16:49:36,430 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/conda-environment.yaml
+2024-01-18 16:49:38,637 DEBUG   HandlerThread:3826664 [system_info.py:_save_conda():86] Saving conda packages done
+2024-01-18 16:49:38,696 INFO    HandlerThread:3826664 [system_monitor.py:probe():216] Finished publishing system info
+2024-01-18 16:49:38,745 DEBUG   SenderThread:3826664 [sender.py:send():369] send: files
+2024-01-18 16:49:38,745 INFO    SenderThread:3826664 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2024-01-18 16:49:38,758 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: stop_status
+2024-01-18 16:49:38,759 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: stop_status
+2024-01-18 16:49:38,893 DEBUG   SenderThread:3826664 [sender.py:send():369] send: telemetry
+2024-01-18 16:49:39,109 INFO    wandb-upload_0:3826664 [upload_job.py:push():133] Uploaded file /tmp/tmpwbp5fj06wandb/ow30l618-wandb-metadata.json
+2024-01-18 16:49:39,435 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/conda-environment.yaml
+2024-01-18 16:49:39,435 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/output.log
+2024-01-18 16:49:39,435 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-metadata.json
+2024-01-18 16:49:40,527 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: status_report
+2024-01-18 16:49:40,581 DEBUG   SenderThread:3826664 [sender.py:send():369] send: exit
+2024-01-18 16:49:40,581 INFO    SenderThread:3826664 [sender.py:send_exit():574] handling exit code: 1
+2024-01-18 16:49:40,582 INFO    SenderThread:3826664 [sender.py:send_exit():576] handling runtime: 4
+2024-01-18 16:49:40,637 INFO    SenderThread:3826664 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2024-01-18 16:49:40,638 INFO    SenderThread:3826664 [sender.py:send_exit():582] send defer
+2024-01-18 16:49:40,638 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,639 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 0
+2024-01-18 16:49:40,643 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,644 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 0
+2024-01-18 16:49:40,644 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 1
+2024-01-18 16:49:40,644 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,644 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 1
+2024-01-18 16:49:40,645 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,645 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 1
+2024-01-18 16:49:40,645 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 2
+2024-01-18 16:49:40,646 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,646 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 2
+2024-01-18 16:49:40,646 INFO    HandlerThread:3826664 [system_monitor.py:finish():190] Stopping system monitor
+2024-01-18 16:49:40,646 DEBUG   SystemMonitor:3826664 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2024-01-18 16:49:40,646 DEBUG   SystemMonitor:3826664 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2024-01-18 16:49:40,646 DEBUG   SystemMonitor:3826664 [system_monitor.py:_start():170] Publishing last batch of metrics
+2024-01-18 16:49:40,647 INFO    HandlerThread:3826664 [interfaces.py:finish():202] Joined cpu monitor
+2024-01-18 16:49:40,648 INFO    HandlerThread:3826664 [interfaces.py:finish():202] Joined disk monitor
+2024-01-18 16:49:40,689 INFO    HandlerThread:3826664 [interfaces.py:finish():202] Joined gpu monitor
+2024-01-18 16:49:40,689 INFO    HandlerThread:3826664 [interfaces.py:finish():202] Joined memory monitor
+2024-01-18 16:49:40,690 INFO    HandlerThread:3826664 [interfaces.py:finish():202] Joined network monitor
+2024-01-18 16:49:40,690 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,690 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 2
+2024-01-18 16:49:40,690 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 3
+2024-01-18 16:49:40,690 DEBUG   SenderThread:3826664 [sender.py:send():369] send: stats
+2024-01-18 16:49:40,690 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,690 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 3
+2024-01-18 16:49:40,690 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,690 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 3
+2024-01-18 16:49:40,691 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 4
+2024-01-18 16:49:40,691 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,691 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 4
+2024-01-18 16:49:40,691 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,691 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 4
+2024-01-18 16:49:40,691 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 5
+2024-01-18 16:49:40,691 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,691 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 5
+2024-01-18 16:49:40,692 DEBUG   SenderThread:3826664 [sender.py:send():369] send: summary
+2024-01-18 16:49:40,754 INFO    SenderThread:3826664 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2024-01-18 16:49:40,755 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,755 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 5
+2024-01-18 16:49:40,755 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 6
+2024-01-18 16:49:40,756 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,756 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 6
+2024-01-18 16:49:40,757 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,757 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 6
+2024-01-18 16:49:40,762 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: status_report
+2024-01-18 16:49:40,905 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 7
+2024-01-18 16:49:40,905 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:40,905 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 7
+2024-01-18 16:49:40,906 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:40,906 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 7
+2024-01-18 16:49:41,480 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/output.log
+2024-01-18 16:49:41,481 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-summary.json
+2024-01-18 16:49:41,482 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/config.yaml
+2024-01-18 16:49:41,572 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 8
+2024-01-18 16:49:41,572 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:41,573 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 8
+2024-01-18 16:49:41,573 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:41,574 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 8
+2024-01-18 16:49:41,574 INFO    SenderThread:3826664 [job_builder.py:build():232] Attempting to build job artifact
+2024-01-18 16:49:41,576 INFO    SenderThread:3826664 [job_builder.py:build():256] is repo sourced job
+2024-01-18 16:49:41,581 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: poll_exit
+2024-01-18 16:49:41,584 INFO    SenderThread:3826664 [job_builder.py:build():297] adding wandb-job metadata file
+2024-01-18 16:49:41,865 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 9
+2024-01-18 16:49:41,865 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: poll_exit
+2024-01-18 16:49:41,866 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:41,866 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 9
+2024-01-18 16:49:41,867 DEBUG   SenderThread:3826664 [sender.py:send():369] send: artifact
+2024-01-18 16:49:42,482 INFO    Thread-12 :3826664 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/output.log
+2024-01-18 16:49:42,582 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: poll_exit
+2024-01-18 16:49:45,258 INFO    SenderThread:3826664 [sender.py:send_artifact():1450] sent artifact job-git_github.com_SMATousi_dem2so.git_train.py - {'id': 'QXJ0aWZhY3Q6Njk1NzEwMjA5', 'digest': '5339b6386ad49b23c6606867e35cf8cc', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-git_github.com_SMATousi_dem2so.git_train.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-git_github.com_SMATousi_dem2so.git_train.py', 'alias': 'v1'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjEzMTY0MjA2NQ==', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6Njk1NzEwMjA5', 'versionIndex': 1}}, 'version': 'v1'}
+2024-01-18 16:49:45,259 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:45,259 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 9
+2024-01-18 16:49:45,259 INFO    SenderThread:3826664 [dir_watcher.py:finish():359] shutting down directory watcher
+2024-01-18 16:49:45,486 INFO    SenderThread:3826664 [dir_watcher.py:finish():389] scan: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files
+2024-01-18 16:49:45,487 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/config.yaml config.yaml
+2024-01-18 16:49:45,488 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/conda-environment.yaml conda-environment.yaml
+2024-01-18 16:49:45,489 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/requirements.txt requirements.txt
+2024-01-18 16:49:45,489 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/output.log output.log
+2024-01-18 16:49:45,490 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-metadata.json wandb-metadata.json
+2024-01-18 16:49:45,490 INFO    SenderThread:3826664 [dir_watcher.py:finish():403] scan save: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-summary.json wandb-summary.json
+2024-01-18 16:49:45,496 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 10
+2024-01-18 16:49:45,496 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: poll_exit
+2024-01-18 16:49:45,510 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:45,510 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 10
+2024-01-18 16:49:45,513 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:45,513 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 10
+2024-01-18 16:49:45,513 INFO    SenderThread:3826664 [file_pusher.py:finish():159] shutting down file pusher
+2024-01-18 16:49:45,820 INFO    wandb-upload_3:3826664 [upload_job.py:push():133] Uploaded file /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/requirements.txt
+2024-01-18 16:49:45,882 INFO    wandb-upload_4:3826664 [upload_job.py:push():133] Uploaded file /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/output.log
+2024-01-18 16:49:45,889 INFO    wandb-upload_2:3826664 [upload_job.py:push():133] Uploaded file /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/conda-environment.yaml
+2024-01-18 16:49:45,902 INFO    wandb-upload_0:3826664 [upload_job.py:push():133] Uploaded file /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/config.yaml
+2024-01-18 16:49:45,908 INFO    wandb-upload_5:3826664 [upload_job.py:push():133] Uploaded file /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/files/wandb-summary.json
+2024-01-18 16:49:46,109 INFO    Thread-11 :3826664 [sender.py:transition_state():602] send defer: 11
+2024-01-18 16:49:46,110 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:46,110 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 11
+2024-01-18 16:49:46,111 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:46,111 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 11
+2024-01-18 16:49:46,111 INFO    SenderThread:3826664 [file_pusher.py:join():164] waiting for file pusher
+2024-01-18 16:49:46,111 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 12
+2024-01-18 16:49:46,112 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:46,112 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 12
+2024-01-18 16:49:46,113 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: status_report
+2024-01-18 16:49:46,114 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:46,114 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 12
+2024-01-18 16:49:46,165 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 13
+2024-01-18 16:49:46,165 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:46,166 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 13
+2024-01-18 16:49:46,166 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:46,167 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 13
+2024-01-18 16:49:46,167 INFO    SenderThread:3826664 [sender.py:transition_state():602] send defer: 14
+2024-01-18 16:49:46,167 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: defer
+2024-01-18 16:49:46,167 INFO    HandlerThread:3826664 [handler.py:handle_request_defer():170] handle defer: 14
+2024-01-18 16:49:46,168 DEBUG   SenderThread:3826664 [sender.py:send():369] send: final
+2024-01-18 16:49:46,169 DEBUG   SenderThread:3826664 [sender.py:send():369] send: footer
+2024-01-18 16:49:46,169 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: defer
+2024-01-18 16:49:46,169 INFO    SenderThread:3826664 [sender.py:send_request_defer():598] handle sender defer: 14
+2024-01-18 16:49:46,170 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: poll_exit
+2024-01-18 16:49:46,171 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: poll_exit
+2024-01-18 16:49:46,172 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: server_info
+2024-01-18 16:49:46,173 DEBUG   SenderThread:3826664 [sender.py:send_request():396] send_request: server_info
+2024-01-18 16:49:46,179 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: get_summary
+2024-01-18 16:49:46,180 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: sampled_history
+2024-01-18 16:49:46,223 INFO    MainThread:3826664 [wandb_run.py:_footer_history_summary_info():3467] rendering history
+2024-01-18 16:49:46,223 INFO    MainThread:3826664 [wandb_run.py:_footer_history_summary_info():3499] rendering summary
+2024-01-18 16:49:46,223 INFO    MainThread:3826664 [wandb_run.py:_footer_sync_info():3426] logging synced files
+2024-01-18 16:49:46,224 DEBUG   HandlerThread:3826664 [handler.py:handle_request():144] handle_request: shutdown
+2024-01-18 16:49:46,224 INFO    HandlerThread:3826664 [handler.py:finish():854] shutting down handler
+2024-01-18 16:49:47,173 INFO    WriterThread:3826664 [datastore.py:close():298] close: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240118_164934-n9foy6xq/run-n9foy6xq.wandb
+2024-01-18 16:49:47,223 INFO    SenderThread:3826664 [sender.py:finish():1526] shutting down sender
+2024-01-18 16:49:47,223 INFO    SenderThread:3826664 [file_pusher.py:finish():159] shutting down file pusher
+2024-01-18 16:49:47,223 INFO    SenderThread:3826664 [file_pusher.py:join():164] waiting for file pusher

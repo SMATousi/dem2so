@@ -118,14 +118,14 @@ if arg_modelname == 'SA_Unet':
     model = SA_UNet(in_channels=1, num_classes=1).to(device)  
 
 
-criterion = nn.CrossEntropyLoss(ignore_index=0)  # Replace with your loss function
+criterion = nn.CrossEntropyLoss()  # Replace with your loss function
 optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
 
 
 for epoch in range(epochs):
 
-    train_metrics = {'Train/accuracy': 0, 'Train/iou': 0, 'Train/dice': 0}
+    train_metrics = {'Train/iou': 0}
 
     model.train()  # Set the model to training mode
     for batch in tqdm(train_loader):
@@ -140,10 +140,10 @@ for epoch in range(epochs):
         loss.backward()  # Backpropagation
         optimizer.step()  # Update weights
 
-        acc, iou, dice = calculate_metrics(outputs, so_image)
-        train_metrics['Train/accuracy'] += acc
+        iou = mIOU(so_image, outputs)
+        # train_metrics['Train/accuracy'] += acc
         train_metrics['Train/iou'] += iou
-        train_metrics['Train/dice'] += dice
+        # train_metrics['Train/dice'] += dice
 
         if arg_nottest:
             continue
@@ -156,6 +156,7 @@ for epoch in range(epochs):
     
     if args.logging:
         wandb.log(train_metrics)
+        wandb.log({'Train/Loss':loss.item()})
     
         
     
@@ -166,7 +167,7 @@ for epoch in range(epochs):
 
     # Validation loop
     model.eval()  # Set the model to evaluation mode
-    val_metrics = {'Validation/accuracy': 0, 'Validation/iou': 0, 'Validation/dice': 0}
+    val_metrics = {'Validation/iou': 0}
     with torch.no_grad():
         val_correct = 0
         val_total = 0
@@ -175,10 +176,11 @@ for epoch in range(epochs):
             so_image = batch['SO']
             dem_image, so_image = dem_image.to(device), so_image.to(device)  # Move data to GPU
             val_outputs = model(dem_image)  # Forward pass
-            acc, iou, dice = calculate_metrics(val_outputs, so_image)
-            val_metrics['Validation/accuracy'] += acc
+            loss = criterion(val_outputs, so_image)
+            iou = mIOU(so_image, val_outputs)
+            # val_metrics['Validation/accuracy'] += acc
             val_metrics['Validation/iou'] += iou
-            val_metrics['Validation/dice'] += dice
+            # val_metrics['Validation/dice'] += dice
 
             if arg_nottest:
                 continue
@@ -191,13 +193,14 @@ for epoch in range(epochs):
 
         if args.logging:
             wandb.log(val_metrics)
-        
+            wandb.log({'Validation/Loss':loss.item()})
+
             if (epoch + 1) % arg_savingstep == 0:
 
                 torch.save(model.state_dict(), f'./model_epoch_{epoch+1}.pth')
                 artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
                 artifact.add_file(f'./model_epoch_{epoch+1}.pth')
                 wandb.log_artifact(artifact)
-                save_comparison_figures(model, val_loader, epoch + 1, device)
+                # save_comparison_figures(model, val_loader, epoch + 1, device)
 
         print(val_metrics)

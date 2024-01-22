@@ -1,0 +1,9 @@
+cuda
+Data is loaded
+  0%|                                                                                                                    | 0/582 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "train.py", line 143, in <module>
+    iou = mIOU(so_image, outputs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/utils.py", line 54, in mIOU
+    pred = F.softmax(pred, dim=1)
+AttributeError: module 'torchvision.transforms.functional' has no attribute 'softmax'

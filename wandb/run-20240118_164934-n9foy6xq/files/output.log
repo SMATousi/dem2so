@@ -1,0 +1,9 @@
+cuda
+Data is loaded
+  0%|                                                                                                                    | 0/582 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "train.py", line 143, in <module>
+    iou = mIOU(so_image, outputs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/utils.py", line 55, in mIOU
+    pred = torch.argmax(pred, dim=1).squeeze(1)
+NameError: name 'torch' is not defined
