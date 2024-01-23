@@ -181,7 +181,7 @@ class ResNetFeatures(nn.Module):
         resnet.fc = torch.nn.Linear(2048,19)
 #         resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
         # Load your pretrained weights here if you have them
-        checkpoint = torch.load('../../models/PyTorch/B3_rn50_moco_0099_ckpt.pth')
+        checkpoint = torch.load('/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth')
 
         # rename moco pre-trained keys
         state_dict = checkpoint['state_dict']
