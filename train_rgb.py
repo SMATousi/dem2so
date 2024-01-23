@@ -28,7 +28,7 @@ parser = argparse.ArgumentParser(description="A script with argparse options")
 # Add an argument for an integer option
 parser.add_argument("--runname", type=str, required=False)
 parser.add_argument("--projectname", type=str, required=False)
-parser.add_argument("--modelname", type=str, required=True)
+parser.add_argument("--modelname", type=str, required=False)
 parser.add_argument("--batchsize", type=int, default=4)
 parser.add_argument("--savingstep", type=int, default=100)
 parser.add_argument("--epochs", type=int, default=100)
@@ -110,8 +110,12 @@ criterion = nn.CrossEntropyLoss()
 optimizer = Adam(model.parameters(), lr=learning_rate)
 
 # Training loop
+
 for epoch in range(epochs):
-    for i, batch in enumerate(train_loader):
+
+    train_metrics = {'Train/iou': 0}
+    
+    for i, batch in enumerate(tqdm(train_loader)):
         dem = batch['DEM'].to(device)
         so = batch['SO'].to(device)
         rgbs = [batch['RGB'][k].to(device) for k in range(6)]
@@ -119,13 +123,71 @@ for epoch in range(epochs):
         # Forward pass
         outputs = model(dem, rgbs)
         loss = criterion(outputs, so)
+        iou = mIOU(so, outputs)
+        train_metrics['Train/iou'] += iou
 
         # Backward and optimize
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        
+        if arg_nottest:
+            continue
+        else:
+            break
 
-        if (i+1) % 10 == 0:
-            print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(dataloader)}], Loss: {loss.item():.4f}')
+    if arg_nottest:
+        for k in train_metrics:
+            train_metrics[k] /= len(train_loader)
+    
+    if args.logging:
+        wandb.log(train_metrics)
+        wandb.log({'Train/Loss':loss.item()})
+    
+    print(f"Epoch [{epoch+1}/{epochs}] - Loss: {loss.item()}")
+    print(train_metrics)
 
-print("Training completed.")
+
+
+    # Validation loop
+    model.eval()  # Set the model to evaluation mode
+    val_metrics = {'Validation/iou': 0}
+    with torch.no_grad():
+
+        for i, batch in enumerate(tqdm(val_loader)):
+            dem = batch['DEM'].to(device)
+            so = batch['SO'].to(device)
+            rgbs = [batch['RGB'][k].to(device) for k in range(6)]
+
+            outputs = model(dem, rgbs)
+            loss = criterion(outputs, so)
+            iou = mIOU(so, outputs)
+            val_metrics['Validation/iou'] += iou
+
+
+            if arg_nottest:
+                    continue
+            else:
+                break
+        
+        if arg_nottest:
+            for k in val_metrics:
+                val_metrics[k] /= len(val_loader)
+
+        if args.logging:
+            wandb.log(val_metrics)
+            wandb.log({'Validation/Loss':loss.item()})
+
+            if (epoch + 1) % arg_savingstep == 0:
+
+                torch.save(model.state_dict(), f'./model_epoch_{epoch+1}.pth')
+                artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
+                artifact.add_file(f'./model_epoch_{epoch+1}.pth')
+                wandb.log_artifact(artifact)
+                # save_comparison_figures(model, val_loader, epoch + 1, device)
+
+        print(val_metrics)
+
+
+
+

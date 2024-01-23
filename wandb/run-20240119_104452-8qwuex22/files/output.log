@@ -708,3 +708,4 @@ PeakReserved:                        0
 LargestFreeBlock:                    0
 2024-01-19 16:27:42.081822: W tensorflow/tsl/framework/bfc_allocator.cc:492] **********************************************************************************xxxxxxxxxxxxxxxxxx
 2024-01-19 16:27:42.118377: W tensorflow/core/framework/op_kernel.cc:1818] RESOURCE_EXHAUSTED: failed to allocate memory
+wandb: Network error (ReadTimeout), entering retry loop.

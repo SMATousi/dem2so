@@ -131,14 +131,15 @@ class OutConv(nn.Module):
         return self.conv(x)
     
 
+
 class ResNetFeatures(nn.Module):
     def __init__(self, output_size):
         super(ResNetFeatures, self).__init__()
         resnet = models.resnet50(pretrained=False)
         resnet.fc = torch.nn.Linear(2048,19)
-        resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+#         resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
         # Load your pretrained weights here if you have them
-        checkpoint = torch.load('../pre_trained/B13_rn50_moco_0099_ckpt.pth')
+        checkpoint = torch.load('../../models/PyTorch/B3_rn50_moco_0099_ckpt.pth')
 
         # rename moco pre-trained keys
         state_dict = checkpoint['state_dict']
@@ -162,6 +163,9 @@ class ResNetFeatures(nn.Module):
         # Remove the fully connected layer and the average pooling layer
         self.features = nn.Sequential(*list(resnet.children())[:-2])
         self.avgpool = nn.AdaptiveAvgPool2d(output_size)
+        
+        for param in self.features.parameters():
+            param.requires_grad = False
 
     def forward(self, x):
         x = self.features(x)
@@ -184,7 +188,7 @@ class RGB_DEM_to_SO(nn.Module):
     def __init__(self, resnet_output_size, fusion_output_size):
         super(RGB_DEM_to_SO, self).__init__()
         self.resnet = ResNetFeatures(output_size=resnet_output_size)
-        self.fusion_net = FusionNet(input_channels=6, output_size=fusion_output_size)
+        self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
         self.unet = UNet_1(n_channels=2, n_classes=8)
 
     def forward(self, dem, rgbs):

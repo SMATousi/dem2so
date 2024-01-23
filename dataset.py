@@ -11,7 +11,7 @@ from torchvision.transforms import functional as TF
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
-import imageio
+import imageio.v2 as imageio
 
 
 class BasicDataset(Dataset):
@@ -190,7 +190,7 @@ class RGB_RasterTilesDataset(Dataset):
 
         dem_array = np.array(dem_image)
         so_array = np.array(so_image)
-        rgb_arrays = [np.array(image)/255 for image in rgb_images]
+        rgb_arrays = [np.array(image).transpose(2,0,1)/255 for image in rgb_images]
 
         sample = {'DEM': dem_array, 'SO': so_array, 'RGB': rgb_arrays}
 

@@ -1,0 +1,56 @@
+cuda
+Data is loaded
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+  0%|                                                                                                                    | 0/290 [00:00<?, ?it/s]
+Epoch [1/10] - Loss: 2.0629425048828125
+  0%|                                                                                                                    | 0/290 [00:02<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [2/10] - Loss: 2.1100339889526367
+{'Train/iou': 0.0062007904052734375}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [3/10] - Loss: 2.104444980621338
+{'Train/iou': 0.006957054138183594}
+  0%|                                                                                                                    | 0/290 [00:00<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [4/10] - Loss: 2.1038851737976074
+{'Train/iou': 0.008211408342633928}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [5/10] - Loss: 2.099766254425049
+{'Train/iou': 0.005649566650390625}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [6/10] - Loss: 2.1018192768096924
+{'Train/iou': 0.006160736083984375}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [7/10] - Loss: 2.0953922271728516
+{'Train/iou': 0.007695879255022321}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+  0%|                                                                                                                    | 0/290 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [8/10] - Loss: 2.083458423614502
+{'Train/iou': 0.006331443786621094}
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+Epoch [9/10] - Loss: 2.0918526649475098
+{'Train/iou': 0.0067291259765625}
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]
+{'Validation/iou': 0.006489753723144531}
+  0%|                                                                                                                    | 0/290 [00:00<?, ?it/s]
+Epoch [10/10] - Loss: 2.086583137512207
+{'Train/iou': 0.007689339773995536}
+  0%|                                                                                                                    | 0/290 [00:03<?, ?it/s]
+  0%|                                                                                                                     | 0/32 [00:00<?, ?it/s]

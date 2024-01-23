@@ -1,0 +1,72 @@
+2024-01-23 11:30:03,640 INFO    StreamThr :507372 [internal.py:wandb_internal():89] W&B internal server running at pid: 507372, started at: 2024-01-23 11:30:03.621877
+2024-01-23 11:30:03,642 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status
+2024-01-23 11:30:03,644 INFO    WriterThread:507372 [datastore.py:open_for_write():85] open: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/run-pau95pyh.wandb
+2024-01-23 11:30:03,715 DEBUG   SenderThread:507372 [sender.py:send():369] send: header
+2024-01-23 11:30:03,716 DEBUG   SenderThread:507372 [sender.py:send():369] send: run
+2024-01-23 11:30:04,027 INFO    SenderThread:507372 [dir_watcher.py:__init__():211] watching files in: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files
+2024-01-23 11:30:04,028 INFO    SenderThread:507372 [sender.py:_start_run_threads():1103] run started: pau95pyh with start time 1706031003.620462
+2024-01-23 11:30:04,028 DEBUG   SenderThread:507372 [sender.py:send_request():396] send_request: summary_record
+2024-01-23 11:30:04,039 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: check_version
+2024-01-23 11:30:04,090 INFO    SenderThread:507372 [sender.py:_save_file():1354] saving file wandb-summary.json with policy end
+2024-01-23 11:30:04,091 DEBUG   SenderThread:507372 [sender.py:send_request():396] send_request: check_version
+2024-01-23 11:30:04,212 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: run_start
+2024-01-23 11:30:04,231 DEBUG   HandlerThread:507372 [system_info.py:__init__():31] System info init
+2024-01-23 11:30:04,232 DEBUG   HandlerThread:507372 [system_info.py:__init__():46] System info init done
+2024-01-23 11:30:04,232 INFO    HandlerThread:507372 [system_monitor.py:start():181] Starting system monitor
+2024-01-23 11:30:04,232 INFO    SystemMonitor:507372 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2024-01-23 11:30:04,232 INFO    HandlerThread:507372 [system_monitor.py:probe():201] Collecting system info
+2024-01-23 11:30:04,233 INFO    SystemMonitor:507372 [interfaces.py:start():190] Started cpu monitoring
+2024-01-23 11:30:04,234 INFO    SystemMonitor:507372 [interfaces.py:start():190] Started disk monitoring
+2024-01-23 11:30:04,235 INFO    SystemMonitor:507372 [interfaces.py:start():190] Started gpu monitoring
+2024-01-23 11:30:04,237 INFO    SystemMonitor:507372 [interfaces.py:start():190] Started memory monitoring
+2024-01-23 11:30:04,238 INFO    SystemMonitor:507372 [interfaces.py:start():190] Started network monitoring
+2024-01-23 11:30:04,260 DEBUG   HandlerThread:507372 [system_info.py:probe():195] Probing system
+2024-01-23 11:30:04,318 DEBUG   HandlerThread:507372 [system_info.py:_probe_git():180] Probing git
+2024-01-23 11:30:04,407 DEBUG   HandlerThread:507372 [system_info.py:_probe_git():188] Probing git done
+2024-01-23 11:30:04,408 DEBUG   HandlerThread:507372 [system_info.py:probe():240] Probing system done
+2024-01-23 11:30:04,408 DEBUG   HandlerThread:507372 [system_monitor.py:probe():210] {'os': 'Linux-5.19.0-46-generic-x86_64-with-debian-bookworm-sid', 'python': '3.7.13', 'heartbeatAt': '2024-01-23T17:30:04.261099', 'startedAt': '2024-01-23T17:30:03.345716', 'docker': None, 'cuda': None, 'args': ('--projectname', 'RGB_DEM_2_SO', '--runname', 'Batch8-epoch1000-ResNet50-Unet', '--logging', '--savingstep', '100', '--epochs', '1000', '--batchsize', '8', '--nottest'), 'state': 'running', 'program': 'train_rgb.py', 'codePath': 'train_rgb.py', 'git': {'remote': 'git@github.com:SMATousi/dem2so.git', 'commit': '310f1ca677b1442abaac2349ea67f33e4cbf28d1'}, 'email': 'mohamadali.tousi@gmail.com', 'root': '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so', 'host': 'choroid', 'username': 'SMATousi', 'executable': '/home/macula/SMATousi/.conda/envs/mac-deep/bin/python3', 'cpu_count': 8, 'cpu_count_logical': 16, 'cpu_freq': {'current': 2640.046875, 'min': 1200.0, 'max': 4350.0}, 'cpu_freq_per_core': [{'current': 2198.612, 'min': 1200.0, 'max': 4300.0}, {'current': 1200.432, 'min': 1200.0, 'max': 4300.0}, {'current': 1201.106, 'min': 1200.0, 'max': 4300.0}, {'current': 1200.197, 'min': 1200.0, 'max': 4300.0}, {'current': 3600.0, 'min': 1200.0, 'max': 4500.0}, {'current': 1200.008, 'min': 1200.0, 'max': 4500.0}, {'current': 1200.285, 'min': 1200.0, 'max': 4300.0}, {'current': 1200.865, 'min': 1200.0, 'max': 4300.0}, {'current': 3600.0, 'min': 1200.0, 'max': 4300.0}, {'current': 1208.457, 'min': 1200.0, 'max': 4300.0}, {'current': 1200.343, 'min': 1200.0, 'max': 4300.0}, {'current': 3600.0, 'min': 1200.0, 'max': 4300.0}, {'current': 1200.277, 'min': 1200.0, 'max': 4500.0}, {'current': 3600.0, 'min': 1200.0, 'max': 4500.0}, {'current': 1241.386, 'min': 1200.0, 'max': 4300.0}, {'current': 3600.0, 'min': 1200.0, 'max': 4300.0}], 'disk': {'total': 378.9653778076172, 'used': 78.87330627441406}, 'gpu': 'NVIDIA GeForce RTX 2080 Ti', 'gpu_count': 4, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 2080 Ti', 'memory_total': 11811160064}, {'name': 'NVIDIA GeForce RTX 2080 Ti', 'memory_total': 11811160064}, {'name': 'NVIDIA GeForce RTX 2080 Ti', 'memory_total': 11811160064}, {'name': 'NVIDIA GeForce RTX 2080 Ti', 'memory_total': 11811160064}], 'memory': {'total': 62.466583251953125}}
+2024-01-23 11:30:04,408 INFO    HandlerThread:507372 [system_monitor.py:probe():211] Finished collecting system info
+2024-01-23 11:30:04,409 INFO    HandlerThread:507372 [system_monitor.py:probe():214] Publishing system info
+2024-01-23 11:30:04,409 DEBUG   HandlerThread:507372 [system_info.py:_save_pip():52] Saving list of pip packages installed into the current environment
+2024-01-23 11:30:04,466 DEBUG   HandlerThread:507372 [system_info.py:_save_pip():67] Saving pip packages done
+2024-01-23 11:30:04,467 DEBUG   HandlerThread:507372 [system_info.py:_save_conda():75] Saving list of conda packages installed into the current environment
+2024-01-23 11:30:05,032 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/wandb-summary.json
+2024-01-23 11:30:05,033 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/requirements.txt
+2024-01-23 11:30:05,033 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/conda-environment.yaml
+2024-01-23 11:30:08,470 DEBUG   HandlerThread:507372 [system_info.py:_save_conda():86] Saving conda packages done
+2024-01-23 11:30:08,537 INFO    HandlerThread:507372 [system_monitor.py:probe():216] Finished publishing system info
+2024-01-23 11:30:08,566 DEBUG   SenderThread:507372 [sender.py:send():369] send: files
+2024-01-23 11:30:08,567 INFO    SenderThread:507372 [sender.py:_save_file():1354] saving file wandb-metadata.json with policy now
+2024-01-23 11:30:08,579 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: stop_status
+2024-01-23 11:30:08,580 DEBUG   SenderThread:507372 [sender.py:send_request():396] send_request: stop_status
+2024-01-23 11:30:08,725 DEBUG   SenderThread:507372 [sender.py:send():369] send: telemetry
+2024-01-23 11:30:08,726 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:08,952 INFO    wandb-upload_0:507372 [upload_job.py:push():133] Uploaded file /tmp/tmp_91utoejwandb/n2wzcx84-wandb-metadata.json
+2024-01-23 11:30:09,040 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/conda-environment.yaml
+2024-01-23 11:30:09,040 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:09,040 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_created():272] file/dir created: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/wandb-metadata.json
+2024-01-23 11:30:11,088 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:13,147 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:14,703 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:15,222 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:17,256 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:19,301 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:20,053 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:21,345 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:23,396 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:23,578 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: stop_status
+2024-01-23 11:30:23,579 DEBUG   SenderThread:507372 [sender.py:send_request():396] send_request: stop_status
+2024-01-23 11:30:25,448 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:25,464 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:27,508 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:29,555 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:30,978 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:31,557 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:33,595 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:35,646 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:36,245 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: status_report
+2024-01-23 11:30:36,647 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/config.yaml
+2024-01-23 11:30:37,697 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
+2024-01-23 11:30:38,578 DEBUG   HandlerThread:507372 [handler.py:handle_request():144] handle_request: stop_status
+2024-01-23 11:30:38,579 DEBUG   SenderThread:507372 [sender.py:send_request():396] send_request: stop_status
+2024-01-23 11:30:39,741 INFO    Thread-12 :507372 [dir_watcher.py:_on_file_modified():289] file/dir modified: /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_113003-pau95pyh/files/output.log
