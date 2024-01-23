@@ -73,13 +73,17 @@ if args.logging:
             # }
     )
 
-device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 print(device)
 
-dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/dem'
-so_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/so'
-rgb_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/rgb'
+# dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/dem'
+# so_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/so'
+# rgb_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/dem2so/dem_with_rgb/rgb'
+
+dem_dir = '/root/home/data/dem'
+so_dir = '/root/home/data/so'
+rgb_dir = '/root/home/data/rgb'
 
 
 batch_size = arg_batch_size
