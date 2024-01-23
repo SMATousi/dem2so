@@ -88,7 +88,7 @@ image_size = arg_imagesize
 val_percent = 0.1
 
 
-transform = RasterTransform()
+transform = RGB_RasterTransform()
 
 dataset = RGB_RasterTilesDataset(dem_dir=dem_dir, so_dir=so_dir, rgb_dir=rgb_dir, transform=transform)
 
@@ -103,3 +103,29 @@ val_loader = DataLoader(val, batch_size=arg_batch_size, shuffle=False, num_worke
 print("Data is loaded")
 
 
+model = RGB_DEM_to_SO(resnet_output_size=(8, 8), fusion_output_size=(128, 128)).to(device)
+
+from torch.optim import Adam
+criterion = nn.CrossEntropyLoss()
+optimizer = Adam(model.parameters(), lr=learning_rate)
+
+# Training loop
+for epoch in range(epochs):
+    for i, batch in enumerate(train_loader):
+        dem = batch['DEM'].to(device)
+        so = batch['SO'].to(device)
+        rgbs = [batch['RGB'][k].to(device) for k in range(6)]
+
+        # Forward pass
+        outputs = model(dem, rgbs)
+        loss = criterion(outputs, so)
+
+        # Backward and optimize
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        if (i+1) % 10 == 0:
+            print(f'Epoch [{epoch+1}/{num_epochs}], Step [{i+1}/{len(dataloader)}], Loss: {loss.item():.4f}')
+
+print("Training completed.")

@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torchvision.transforms.functional as TF
 from torch.utils.data import Dataset, DataLoader, random_split
 from torchvision import transforms
 from torchvision import models
@@ -128,3 +129,74 @@ class OutConv(nn.Module):
 
     def forward(self, x):
         return self.conv(x)
+    
+
+class ResNetFeatures(nn.Module):
+    def __init__(self, output_size):
+        super(ResNetFeatures, self).__init__()
+        resnet = models.resnet50(pretrained=False)
+        resnet.fc = torch.nn.Linear(2048,19)
+        resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+        # Load your pretrained weights here if you have them
+        checkpoint = torch.load('../pre_trained/B13_rn50_moco_0099_ckpt.pth')
+
+        # rename moco pre-trained keys
+        state_dict = checkpoint['state_dict']
+        #print(state_dict.keys())
+        for k in list(state_dict.keys()):
+            # retain only encoder up to before the embedding layer
+            if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc'):
+                #pdb.set_trace()
+                # remove prefix
+                state_dict[k[len("module.encoder_q."):]] = state_dict[k]
+            # delete renamed or unused k
+            del state_dict[k]
+        
+        '''
+        # remove prefix
+        state_dict = {k.replace("module.", ""): v for k,v in state_dict.items()}
+        '''
+        #args.start_epoch = 0
+        resnet.load_state_dict(state_dict, strict=False)
+
+        # Remove the fully connected layer and the average pooling layer
+        self.features = nn.Sequential(*list(resnet.children())[:-2])
+        self.avgpool = nn.AdaptiveAvgPool2d(output_size)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = self.avgpool(x)
+        return x
+
+class FusionNet(nn.Module):
+    def __init__(self, input_channels, output_size):
+        super(FusionNet, self).__init__()
+        self.conv = nn.Conv2d(input_channels, 1, kernel_size=1)  # Reduce to 1 channel
+        self.upsample = nn.Upsample(size=output_size, mode='bilinear', align_corners=True)
+
+    def forward(self, x):
+        x = self.conv(x)
+        x = self.upsample(x)
+        return x
+
+
+class RGB_DEM_to_SO(nn.Module):
+    def __init__(self, resnet_output_size, fusion_output_size):
+        super(RGB_DEM_to_SO, self).__init__()
+        self.resnet = ResNetFeatures(output_size=resnet_output_size)
+        self.fusion_net = FusionNet(input_channels=6, output_size=fusion_output_size)
+        self.unet = UNet_1(n_channels=2, n_classes=8)
+
+    def forward(self, dem, rgbs):
+        # rgbs is a list of RGB images
+        features = [self.resnet(rgb) for rgb in rgbs]
+        features = torch.cat(features, dim=1)  # Concatenate features along the channel dimension
+        fused = self.fusion_net(features)
+
+        # Concatenate DEM and fused features
+        combined_input = torch.cat((dem, fused), dim=1)
+        so_output = self.unet(combined_input)
+
+        return so_output
+
+

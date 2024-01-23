@@ -7,12 +7,11 @@ import torch
 from torch.utils.data import Dataset
 import logging
 from PIL import Image
-from libtiff import TIFF
-import cv2
 from torchvision.transforms import functional as TF
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
+import imageio
 
 
 class BasicDataset(Dataset):
@@ -151,7 +150,6 @@ class RasterTransform:
         return {'DEM': dem, 'SO': so.squeeze()}
 
 
-
 class RGB_RasterTilesDataset(Dataset):
     def __init__(self, dem_dir, so_dir, rgb_dir, transform=None):
         """
@@ -167,27 +165,32 @@ class RGB_RasterTilesDataset(Dataset):
         self.rgb_dir = rgb_dir
         self.transform = transform
 
-        self.filenames = [f for f in os.listdir(dem_dir) if os.path.isfile(os.path.join(dem_dir, f))]
+        # self.filenames = [f for f in os.listdir(dem_dir) if os.path.isfile(os.path.join(dem_dir, f))]
+        self.tile_identifiers = [f.split('_')[2:4] for f in os.listdir(dem_dir) if 'dem_tile' in f]
 
     def __len__(self):
-        return len(self.filenames)
+        return len(self.tile_identifiers)
 
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
 
-        dem_file = os.path.join(self.dem_dir, self.filenames[idx])
-        so_file = os.path.join(self.so_dir, self.filenames[idx])
+        tile_id = self.tile_identifiers[idx]
+        dem_file = os.path.join(self.dem_dir, f'dem_tile_{tile_id[0]}_{tile_id[1]}')
+        so_file = os.path.join(self.so_dir, f'so_tile_{tile_id[0]}_{tile_id[1]}')
+
+        # dem_file = os.path.join(self.dem_dir, self.filenames[idx])
+        # so_file = os.path.join(self.so_dir, self.filenames[idx])
         # Assuming RGB tiles follow a similar naming convention
-        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_{self.filenames[idx]}') for k in range(6)]
+        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_tile_{tile_id[0]}_{tile_id[1]}') for k in range(6)]
 
         dem_image = Image.open(dem_file)
         so_image = Image.open(so_file)
-        rgb_images = [Image.open(file) for file in rgb_files]
+        rgb_images = [imageio.imread(file) for file in rgb_files]
 
         dem_array = np.array(dem_image)
         so_array = np.array(so_image)
-        rgb_arrays = [np.array(image) for image in rgb_images]
+        rgb_arrays = [np.array(image)/255 for image in rgb_images]
 
         sample = {'DEM': dem_array, 'SO': so_array, 'RGB': rgb_arrays}
 
@@ -195,3 +198,35 @@ class RGB_RasterTilesDataset(Dataset):
             sample = self.transform(sample)
 
         return sample
+    
+
+class RGB_RasterTransform:
+    """
+    A custom transform class for raster data.
+    """
+    def __init__(self):
+        pass
+
+    def __call__(self, sample):
+        dem, so, rgb = sample['DEM'], sample['SO'], sample['RGB']
+
+        # Random horizontal flipping
+        # if torch.rand(1) > 0.5:
+        #     dem = TF.hflip(dem)
+        #     so = TF.hflip(so)
+
+        # # Random vertical flipping
+        # if torch.rand(1) > 0.5:
+        #     dem = TF.vflip(dem)
+        #     so = TF.vflip(so)
+
+        # Convert numpy arrays to tensors
+        dem = TF.to_tensor(dem)
+        so = TF.to_tensor(so)
+        rgb_images = [TF.to_tensor(image) for image in rgb]
+
+        dem = TF.normalize(dem, 318.90567, 16.467052)
+
+        so = so.long()
+
+        return {'DEM': dem, 'SO': so.squeeze(), 'RGB': rgb}
