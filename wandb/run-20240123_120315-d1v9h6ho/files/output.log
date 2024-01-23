@@ -1,0 +1,34 @@
+cuda:2
+Data is loaded
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+
+
+
+
+
+
+
+
+
+ 33%|███████████████████████████████████▍                                                                       | 96/290 [00:19<00:40,  4.82it/s]
+Traceback (most recent call last):
+  File "train_rgb.py", line 123, in <module>
+    for i, batch in enumerate(tqdm(train_loader)):
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 1195, in __iter__
+    for obj in iterable:
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 628, in __next__
+    data = self._next_data()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1316, in _next_data
+    idx, data = self._get_data()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1272, in _get_data
+    success, data = self._try_get_data()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 1120, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/queue.py", line 179, in get
+    self.not_empty.wait(remaining)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/threading.py", line 300, in wait
+    gotit = waiter.acquire(True, timeout)
+KeyboardInterrupt

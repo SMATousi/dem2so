@@ -34,6 +34,7 @@ parser.add_argument("--savingstep", type=int, default=100)
 parser.add_argument("--epochs", type=int, default=100)
 parser.add_argument("--imagesize", type=int, default=256)
 parser.add_argument("--threshold", type=float, default=1)
+parser.add_argument("--dropoutrate", type=float, default=0.5)
 parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
 parser.add_argument("--logging", help="Enable verbose mode", action="store_true")
 
@@ -47,6 +48,7 @@ arg_modelname = args.modelname
 arg_savingstep = args.savingstep
 arg_threshold = args.threshold
 arg_imagesize = args.imagesize
+arg_dropoutrate = args.dropoutrate
 
 if args.nottest:
     arg_nottest = True 
@@ -71,7 +73,7 @@ if args.logging:
             # }
     )
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 
 print(device)
 
@@ -83,7 +85,7 @@ rgb_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_proces
 batch_size = arg_batch_size
 learning_rate = 0.0001
 epochs = arg_epochs
-number_of_workers = 1
+number_of_workers = 4
 image_size = arg_imagesize
 val_percent = 0.1
 
@@ -103,7 +105,10 @@ val_loader = DataLoader(val, batch_size=arg_batch_size, shuffle=False, num_worke
 print("Data is loaded")
 
 
-model = RGB_DEM_to_SO(resnet_output_size=(8, 8), fusion_output_size=(128, 128)).to(device)
+model = RGB_DEM_to_SO(resnet_output_size=(8, 8), 
+                        fusion_output_size=(128, 128), 
+                        model_choice = arg_modelname, 
+                        dropout_rate=arg_dropoutrate).to(device)
 
 from torch.optim import Adam
 criterion = nn.CrossEntropyLoss()

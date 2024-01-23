@@ -1,0 +1,36 @@
+cuda
+Data is loaded
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 14%|███████████████▍                                                                                           | 42/290 [00:53<05:17,  1.28s/it]
+Traceback (most recent call last):
+  File "train_rgb.py", line 126, in <module>
+    iou = mIOU(so, outputs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/utils.py", line 82, in mIOU
+    intersection_now = (pred_inds[target_inds]).sum().item()
+RuntimeError: numel: integer multiplication overflow

@@ -1,0 +1,28 @@
+2024-01-23 11:49:55,577 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Current SDK version is 0.15.4
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Configure stats pid to 510406
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Loading settings from /home/macula/SMATousi/.config/wandb/settings
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Loading settings from /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/settings
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train_rgb.py', 'program': 'train_rgb.py'}
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_init.py:_log_setup():507] Logging user logs to /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_114954-0xf8hbcn/logs/debug.log
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_init.py:_log_setup():508] Logging internal logs to /home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/wandb/run-20240123_114954-0xf8hbcn/logs/debug-internal.log
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_init.py:init():547] calling init triggers
+2024-01-23 11:49:55,578 INFO    MainThread:510406 [wandb_init.py:init():555] wandb.init called with sweep_config: {}
+config: {}
+2024-01-23 11:49:55,579 INFO    MainThread:510406 [wandb_init.py:init():596] starting backend
+2024-01-23 11:49:55,579 INFO    MainThread:510406 [wandb_init.py:init():600] setting up manager
+2024-01-23 11:49:55,584 INFO    MainThread:510406 [backend.py:_multiprocessing_setup():108] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2024-01-23 11:49:55,590 INFO    MainThread:510406 [wandb_init.py:init():606] backend started and connected
+2024-01-23 11:49:55,596 INFO    MainThread:510406 [wandb_init.py:init():703] updated telemetry
+2024-01-23 11:49:55,765 INFO    MainThread:510406 [wandb_init.py:init():736] communicating run to backend with 60.0 second timeout
+2024-01-23 11:49:56,069 INFO    MainThread:510406 [wandb_run.py:_on_init():2176] communicating current version
+2024-01-23 11:49:56,231 INFO    MainThread:510406 [wandb_run.py:_on_init():2185] got version response upgrade_message: "wandb version 0.16.2 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2024-01-23 11:49:56,231 INFO    MainThread:510406 [wandb_init.py:init():787] starting run threads in backend
+2024-01-23 11:50:01,815 INFO    MainThread:510406 [wandb_run.py:_console_start():2155] atexit reg
+2024-01-23 11:50:01,815 INFO    MainThread:510406 [wandb_run.py:_redirect():2010] redirect: SettingsConsole.WRAP_RAW
+2024-01-23 11:50:01,815 INFO    MainThread:510406 [wandb_run.py:_redirect():2075] Wrapping output streams.
+2024-01-23 11:50:01,816 INFO    MainThread:510406 [wandb_run.py:_redirect():2100] Redirects installed.
+2024-01-23 11:50:01,817 INFO    MainThread:510406 [wandb_init.py:init():828] run started, returning control to user process
+2024-01-23 12:02:50,537 WARNING MsgRouterThr:510406 [router.py:message_loop():77] message_loop has been closed

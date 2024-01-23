@@ -59,6 +59,48 @@ class UNet_1(nn.Module):
 
 
 
+class UNet_light(nn.Module):
+    def __init__(self, n_channels, n_classes, dropout_rate=0.5):
+        super(UNet_light, self).__init__()
+        self.n_channels = n_channels
+        self.n_classes = n_classes
+
+        self.inc = DoubleConv(n_channels, 16)
+        self.down1 = DoubleConv(16, 32)
+        self.down2 = DoubleConv(32, 64)
+        self.down3 = DoubleConv(64, 128)
+        self.down4 = DoubleConv(128, 128)
+        self.up1 = DoubleConv(256, 64)
+        self.up2 = DoubleConv(128, 32)
+        self.up3 = DoubleConv(64, 16)
+        self.up4 = DoubleConv(32, 16)
+        self.outc = nn.Conv2d(16, n_classes, kernel_size=1)
+        self.sigmoid_activation = nn.Sigmoid()
+
+        self.dropout = nn.Dropout(dropout_rate)
+
+
+
+    def forward(self, x):
+        x1 = self.inc(x)
+        x2 = self.down1(x1)
+        x2 = self.dropout(x2)
+        x3 = self.down2(x2)
+        x3 = self.dropout(x3)
+        x4 = self.down3(x3)
+        x4 = self.dropout(x4)
+        x5 = self.down4(x4)
+        x5 = self.dropout(x5)
+        x = self.up1(torch.cat([x4, x5], dim=1))
+        x = self.up2(torch.cat([x3, x], dim=1))
+        x = self.up3(torch.cat([x2, x], dim=1))
+        x = self.up4(torch.cat([x1, x], dim=1))
+        logits = self.outc(x)
+        # logits = self.sigmoid_activation(x)
+
+        return logits
+
+
 class DoubleConv(nn.Module):
     """(convolution => [BN] => ReLU) * 2"""
 
@@ -185,11 +227,13 @@ class FusionNet(nn.Module):
 
 
 class RGB_DEM_to_SO(nn.Module):
-    def __init__(self, resnet_output_size, fusion_output_size):
+    def __init__(self, resnet_output_size, fusion_output_size, model_choice, dropout_rate=0.5):
         super(RGB_DEM_to_SO, self).__init__()
         self.resnet = ResNetFeatures(output_size=resnet_output_size)
         self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
-        self.unet = UNet_1(n_channels=2, n_classes=8)
+        self.unet = UNet_1(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
+        self.unet_light = UNet_light(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
+        self.model_choice = model_choice
 
     def forward(self, dem, rgbs):
         # rgbs is a list of RGB images
@@ -199,7 +243,10 @@ class RGB_DEM_to_SO(nn.Module):
 
         # Concatenate DEM and fused features
         combined_input = torch.cat((dem, fused), dim=1)
-        so_output = self.unet(combined_input)
+        if self.model_choice == "Unet_1":
+            so_output = self.unet(combined_input)
+        if self.model_choice == "Unet_light":
+            so_output = self.unet_light(combined_input)
 
         return so_output
 

@@ -1,0 +1,123 @@
+cuda:1
+Data is loaded
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 38%|████████████████████████████████████████▌                                                                 | 111/290 [11:52<19:08,  6.42s/it]
+Traceback (most recent call last):
+  File "train_rgb.py", line 120, in <module>
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 1205, in __iter__
+    self.update(n - last_print_n)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 1256, in update
+    self.refresh(lock_args=self.lock_args)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 1361, in refresh
+    self.display()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 1509, in display
+    self.sp(self.__str__() if msg is None else msg)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 350, in print_status
+    fp_write('\r' + s + (' ' * max(last_len[0] - len_s, 0)))
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/std.py", line 343, in fp_write
+    fp.write(_unicode(s))
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/utils.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/wandb/sdk/lib/redirect.py", line 640, in write
+    self._old_write(data)
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/tqdm/_monitor.py", line 44, in exit
+    self.join()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/threading.py", line 1044, in join
+    self._wait_for_tstate_lock()
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/threading.py", line 1060, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt

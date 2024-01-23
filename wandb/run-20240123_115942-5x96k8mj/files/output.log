@@ -1,0 +1,25 @@
+cuda:2
+Data is loaded
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:209: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  f"The parameter '{pretrained_param}' is deprecated since 0.13 and may be removed in the future, "
+/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+  warnings.warn(msg)
+  0%|                                                                                                                    | 0/290 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "train_rgb.py", line 129, in <module>
+    outputs = model(dem, rgbs)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/model.py", line 249, in forward
+    so_output = self.unet_light(combined_input)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so/model.py", line 98, in forward
+    logits = self.outc(x)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1190, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 463, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/macula/SMATousi/.conda/envs/mac-deep/lib/python3.7/site-packages/torch/nn/modules/conv.py", line 460, in _conv_forward
+    self.padding, self.dilation, self.groups)
+RuntimeError: Given groups=1, weight of size [9, 16, 1, 1], expected input[8, 8, 128, 128] to have 16 channels, but got 8 channels instead
