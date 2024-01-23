@@ -188,10 +188,11 @@ for epoch in range(epochs):
             wandb.log({'Validation/Loss':loss.item()})
 
             if (epoch + 1) % arg_savingstep == 0:
-
-                torch.save(model.state_dict(), f'./model_epoch_{epoch+1}.pth')
+                
+                os.makedirs('../saved_models', exist_ok=True)
+                torch.save(model.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
                 artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
-                artifact.add_file(f'./model_epoch_{epoch+1}.pth')
+                artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
                 wandb.log_artifact(artifact)
                 # save_comparison_figures(model, val_loader, epoch + 1, device)
 
