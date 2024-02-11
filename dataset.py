@@ -166,7 +166,7 @@ class RGB_RasterTilesDataset(Dataset):
         self.transform = transform
 
         # self.filenames = [f for f in os.listdir(dem_dir) if os.path.isfile(os.path.join(dem_dir, f))]
-        self.tile_identifiers = [f.split('_')[2:4] for f in os.listdir(dem_dir) if 'dem_tile' in f]
+        self.tile_identifiers = [f.split('_')[-1] for f in os.listdir(dem_dir) if 'dem_tile' in f]
 
     def __len__(self):
         return len(self.tile_identifiers)
@@ -176,13 +176,13 @@ class RGB_RasterTilesDataset(Dataset):
             idx = idx.tolist()
 
         tile_id = self.tile_identifiers[idx]
-        dem_file = os.path.join(self.dem_dir, f'dem_tile_{tile_id[0]}_{tile_id[1]}')
-        so_file = os.path.join(self.so_dir, f'so_tile_{tile_id[0]}_{tile_id[1]}')
+        dem_file = os.path.join(self.dem_dir, f'dem_tile_{tile_id}')
+        so_file = os.path.join(self.so_dir, f'so_tile_{tile_id}')
 
         # dem_file = os.path.join(self.dem_dir, self.filenames[idx])
         # so_file = os.path.join(self.so_dir, self.filenames[idx])
         # Assuming RGB tiles follow a similar naming convention
-        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_tile_{tile_id[0]}_{tile_id[1]}') for k in range(6)]
+        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_tile_{tile_id}') for k in range(6)]
 
         dem_image = Image.open(dem_file)
         so_image = Image.open(so_file)
