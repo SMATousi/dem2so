@@ -178,7 +178,7 @@ def main():
             for k in train_metrics:
                 train_metrics[k] /= len(train_loader)
         
-        if current_rank == 0:
+        if accelerator.is_main_process:
 
             if args.logging:
                 wandb.log(train_metrics)
@@ -200,8 +200,10 @@ def main():
                 rgbs = batch['RGB']
     
                 outputs = model(dem, rgbs)
+                all_predictions = accelerator.gather(outputs)
+                all_targets = accelerator.gather(so)
                 loss = criterion(outputs, so)
-                iou = mIOU(so, outputs)
+                iou = mIOU(all_targets, all_predictions)
                 val_metrics['Validation/iou'] += iou
     
     
@@ -214,20 +216,25 @@ def main():
                 for k in val_metrics:
                     val_metrics[k] /= len(val_loader)
     
-            if args.logging:
-                wandb.log(val_metrics)
-                wandb.log({'Validation/Loss':loss.item()})
-    
-                if (epoch + 1) % arg_savingstep == 0:
-                    
-                    os.makedirs('../saved_models', exist_ok=True)
-                    torch.save(model.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
-                    artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
-                    artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
-                    wandb.log_artifact(artifact)
-                    # save_comparison_figures(model, val_loader, epoch + 1, device)
-    
-            print(val_metrics)
+            if accelerator.is_main_process:
+
+                if args.logging:
+                    wandb.log(val_metrics)
+                    wandb.log({'Validation/Loss':loss.item()})
+        
+                    if (epoch + 1) % arg_savingstep == 0:
+                        
+                        os.makedirs('../saved_models', exist_ok=True)
+                        torch.save(model.state_dict(), f'../saved_models/model_epoch_{epoch+1}.pth')
+                        artifact = wandb.Artifact(f'model_epoch_{epoch+1}', type='model')
+                        artifact.add_file(f'../saved_models/model_epoch_{epoch+1}.pth')
+                        wandb.log_artifact(artifact)
+                        # save_comparison_figures(model, val_loader, epoch + 1, device)
+        
+                print(val_metrics)
+                
+    accelerator.wait_for_everyone()
+
 
 if __name__ == "__main__":
     main()
