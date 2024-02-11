@@ -141,6 +141,7 @@ def main():
     model, optimizer, training_dataloader, scheduler = accelerator.prepare(
         model, optimizer, train_loader, scheduler
     )
+    validation_dataloader = accelerator.prepare(val_loader)
     
     # Training loop
     
@@ -187,10 +188,10 @@ def main():
         val_metrics = {'Validation/iou': 0}
         with torch.no_grad():
     
-            for i, batch in enumerate(tqdm(val_loader)):
-                dem = batch['DEM'].to(device)
-                so = batch['SO'].to(device)
-                rgbs = [batch['RGB'][k].to(device) for k in range(6)]
+            for i, batch in enumerate(tqdm(validation_dataloader)):
+                dem = batch['DEM']
+                so = batch['SO']
+                rgbs = batch['RGB']
     
                 outputs = model(dem, rgbs)
                 loss = criterion(outputs, so)
