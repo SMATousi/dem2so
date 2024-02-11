@@ -159,8 +159,8 @@ def main():
             loss = criterion(outputs, so)
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
-            print(all_predictions)
-            print(all_targets)
+            print(all_predictions.dtype)
+            print(all_targets.dtype)
             iou = mIOU(all_predictions, all_targets)
             train_metrics['Train/iou'] += iou
     
