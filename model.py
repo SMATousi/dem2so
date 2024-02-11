@@ -175,13 +175,13 @@ class OutConv(nn.Module):
 
 
 class ResNetFeatures(nn.Module):
-    def __init__(self, output_size):
+    def __init__(self, output_size, saved_model_path):
         super(ResNetFeatures, self).__init__()
         resnet = models.resnet50(pretrained=False)
         resnet.fc = torch.nn.Linear(2048,19)
 #         resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
         # Load your pretrained weights here if you have them
-        checkpoint = torch.load('/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth')
+        checkpoint = torch.load(saved_model_path)
 
         # rename moco pre-trained keys
         state_dict = checkpoint['state_dict']
@@ -227,9 +227,9 @@ class FusionNet(nn.Module):
 
 
 class RGB_DEM_to_SO(nn.Module):
-    def __init__(self, resnet_output_size, fusion_output_size, model_choice, dropout_rate=0.5):
+    def __init__(self, resnet_output_size, fusion_output_size, model_choice, resnet_saved_model_path, dropout_rate=0.5):
         super(RGB_DEM_to_SO, self).__init__()
-        self.resnet = ResNetFeatures(output_size=resnet_output_size)
+        self.resnet = ResNetFeatures(output_size=resnet_output_size, saved_model_path=resnet_saved_model_path)
         self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
         self.unet = UNet_1(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
         self.unet_light = UNet_light(n_channels=2, n_classes=9, dropout_rate=dropout_rate)

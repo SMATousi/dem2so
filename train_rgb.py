@@ -85,6 +85,8 @@ dem_dir = '/root/home/data/dem'
 so_dir = '/root/home/data/so'
 rgb_dir = '/root/home/data/rgb'
 
+pretrained_model_path = '/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth'
+
 
 batch_size = arg_batch_size
 learning_rate = 0.0001
@@ -112,6 +114,7 @@ print("Data is loaded")
 model = RGB_DEM_to_SO(resnet_output_size=(8, 8), 
                         fusion_output_size=(128, 128), 
                         model_choice = arg_modelname, 
+                        resnet_saved_model_path=pretrained_model_path,
                         dropout_rate=arg_dropoutrate).to(device)
 
 from torch.optim import Adam
