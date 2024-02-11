@@ -157,7 +157,9 @@ def main():
             # Forward pass
             outputs = model(dem, rgbs)
             loss = criterion(outputs, so)
-            iou = mIOU(so, outputs)
+            all_predictions = accelerator.gather(outputs)
+            all_targets = accelerator.gather(so)
+            iou = mIOU(all_predictions, all_targets)
             train_metrics['Train/iou'] += iou
     
             # Backward and optimize
