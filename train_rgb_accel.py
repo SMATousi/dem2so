@@ -68,21 +68,22 @@ def main():
     
     
     args = parser.parse_args()
-    
-    if args.logging:
-    
-        wandb.init(
-                # set the wandb project where this run will be logged
-            project=arg_projectname, name=arg_runname
-                
-                # track hyperparameters and run metadata
-                # config={
-                # "learning_rate": 0.02,
-                # "architecture": "CNN",
-                # "dataset": "CIFAR-100",
-                # "epochs": 20,
-                # }
-        )
+
+    if accelerator.is_main_process:
+        if args.logging:
+        
+            wandb.init(
+                    # set the wandb project where this run will be logged
+                project=arg_projectname, name=arg_runname
+                    
+                    # track hyperparameters and run metadata
+                    # config={
+                    # "learning_rate": 0.02,
+                    # "architecture": "CNN",
+                    # "dataset": "CIFAR-100",
+                    # "epochs": 20,
+                    # }
+            )
     
     # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     device = accelerator.device
