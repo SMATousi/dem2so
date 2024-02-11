@@ -159,9 +159,7 @@ def main():
             loss = criterion(outputs, so)
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
-            print(all_predictions.dtype)
-            print(all_targets.dtype)
-            iou = mIOU(all_predictions, all_targets)
+            iou = mIOU(all_targets, all_predictions)
             train_metrics['Train/iou'] += iou
     
             # Backward and optimize
