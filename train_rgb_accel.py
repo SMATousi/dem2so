@@ -104,7 +104,7 @@ def main():
     batch_size = arg_batch_size
     learning_rate = 0.0001
     epochs = arg_epochs
-    number_of_workers = 1
+    number_of_workers = 0
     image_size = arg_imagesize
     val_percent = 0.1
     
