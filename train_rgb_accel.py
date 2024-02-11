@@ -29,6 +29,8 @@ def main():
     
     kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
     accelerator = Accelerator(kwargs_handlers=[kwargs])
+
+    current_rank = accelerator.state.process_index
     
     
     
@@ -176,12 +178,14 @@ def main():
             for k in train_metrics:
                 train_metrics[k] /= len(train_loader)
         
-        if args.logging:
-            wandb.log(train_metrics)
-            wandb.log({'Train/Loss':loss.item()})
-        
-        print(f"Epoch [{epoch+1}/{epochs}] - Loss: {loss.item()}")
-        print(train_metrics)
+        if current_rank == 0:
+
+            if args.logging:
+                wandb.log(train_metrics)
+                wandb.log({'Train/Loss':loss.item()})
+            
+            print(f"Epoch [{epoch+1}/{epochs}] - Loss: {loss.item()}")
+            print(train_metrics)
     
     
     
