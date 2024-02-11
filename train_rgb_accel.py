@@ -11,6 +11,7 @@ from tqdm import tqdm
 import argparse
 import wandb
 from accelerate import Accelerator
+from accelerate.utils import DistributedDataParallelKwargs
 from model import *
 from dataset import *
 from utils import *
@@ -26,7 +27,8 @@ torch.backends.cudnn.benchmark = False
 
 def main():
     
-    accelerator = Accelerator()
+    kwargs = DistributedDataParallelKwargs(find_unused_parameters=True)
+    accelerator = Accelerator(kwargs_handlers=[kwargs])
     
     
     
