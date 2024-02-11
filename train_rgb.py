@@ -85,7 +85,8 @@ dem_dir = '/root/home/data/dem'
 so_dir = '/root/home/data/so'
 rgb_dir = '/root/home/data/rgb'
 
-pretrained_model_path = '/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth'
+# pretrained_model_path = '/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth'
+pretrained_model_path = '/home/macula/SMATousi/cluster/docker-images/dem2so_more_data/pre_models/B3_rn50_moco_0099_ckpt.pth'
 
 
 batch_size = arg_batch_size
