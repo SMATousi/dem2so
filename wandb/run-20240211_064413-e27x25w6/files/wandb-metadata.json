@@ -1,0 +1,149 @@
+{
+    "os": "Linux-5.19.0-46-generic-x86_64-with-debian-bookworm-sid",
+    "python": "3.7.13",
+    "heartbeatAt": "2024-02-11T12:44:14.216364",
+    "startedAt": "2024-02-11T12:44:13.231727",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--epochs",
+        "10",
+        "--batchsize",
+        "4",
+        "--modelname",
+        "Unet_1",
+        "--logging",
+        "--projectname",
+        "RGB_DEM_2_SO",
+        "--runname",
+        "ExData_Unet_batch16_test"
+    ],
+    "state": "running",
+    "program": "train_rgb_accel.py",
+    "codePath": "train_rgb_accel.py",
+    "git": {
+        "remote": "git@github.com:SMATousi/dem2so.git",
+        "commit": "0a8b3933ca95acf8181445395d26ccf710b44c45"
+    },
+    "email": "mohamadali.tousi@gmail.com",
+    "root": "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so",
+    "host": "choroid",
+    "username": "SMATousi",
+    "executable": "/home/macula/SMATousi/.conda/envs/mac-deep/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 2818.8105625,
+        "min": 1200.0,
+        "max": 4350.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2091.237,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1199.994,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1265.269,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1199.923,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 4030.041,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4030.035,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 4029.997,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1200.07,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4500.0
+        },
+        {
+            "current": 3600.0,
+            "min": 1200.0,
+            "max": 4300.0
+        },
+        {
+            "current": 1200.762,
+            "min": 1200.0,
+            "max": 4300.0
+        }
+    ],
+    "disk": {
+        "total": 378.9653778076172,
+        "used": 92.85416030883789
+    },
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "gpu_count": 4,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11811160064
+        }
+    ],
+    "memory": {
+        "total": 62.466583251953125
+    }
+}

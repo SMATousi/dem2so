@@ -1,0 +1,84 @@
+{
+    "os": "Linux-6.5.0-15-generic-x86_64-with-debian-trixie-sid",
+    "python": "3.7.13",
+    "heartbeatAt": "2024-02-14T17:31:49.666994",
+    "startedAt": "2024-02-14T17:31:42.025483",
+    "docker": null,
+    "cuda": null,
+    "args": null,
+    "state": "running",
+    "program": "Testing_Results.ipynb",
+    "root": "/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/code/dem2so",
+    "git": {
+        "remote": "git@github.com:SMATousi/dem2so.git",
+        "commit": "0a8b3933ca95acf8181445395d26ccf710b44c45"
+    },
+    "email": "mohamadali.tousi@gmail.com",
+    "host": "macula",
+    "username": "SMATousi",
+    "executable": "/home/macula/SMATousi/.conda/envs/mac-deep/bin/python",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2270.00075,
+        "min": 800.0,
+        "max": 4000.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2344.582,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2380.597,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2455.194,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 1540.276,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2671.56,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2402.112,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2452.281,
+            "min": 800.0,
+            "max": 4000.0
+        },
+        {
+            "current": 2444.903,
+            "min": 800.0,
+            "max": 4000.0
+        }
+    ],
+    "disk": {
+        "total": 91.10879898071289,
+        "used": 83.2151870727539
+    },
+    "gpu": "NVIDIA GeForce GTX 960",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 960",
+            "memory_total": 4294967296
+        }
+    ],
+    "memory": {
+        "total": 31.277088165283203
+    }
+}
