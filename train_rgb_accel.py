@@ -31,6 +31,7 @@ def main():
     accelerator = Accelerator(kwargs_handlers=[kwargs])
 
     current_rank = accelerator.state.process_index
+    num_gpus = accelerator.state.num_processes
     
     
     
@@ -90,16 +91,26 @@ def main():
     
     print(device)
     
+<<<<<<< HEAD
 #     dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/dem'
 #     so_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/so'
 #     rgb_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/rgb'
+=======
+    #dem_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/dem'
+    #so_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/so'
+    #rgb_dir = '/home/macula/SMATousi/Gullies/ground_truth/google_api/training_process/DEM2SO/New_Data/rgb'
+>>>>>>> 8875dee0dfbcfb01b095ff459b30cdc3320be460
     
     dem_dir = '/root/home/data/dem'
     so_dir = '/root/home/data/so'
     rgb_dir = '/root/home/data/rgb'
     
     pretrained_model_path = '/root/home/pre_trained/B3_rn50_moco_0099_ckpt.pth'
+<<<<<<< HEAD
 #     pretrained_model_path = '/home/macula/SMATousi/cluster/docker-images/dem2so_more_data/pre_models/B3_rn50_moco_0099_ckpt.pth'
+=======
+    #pretrained_model_path = '/home/macula/SMATousi/cluster/docker-images/dem2so_more_data/pre_models/B3_rn50_moco_0099_ckpt.pth'
+>>>>>>> 8875dee0dfbcfb01b095ff459b30cdc3320be460
     
     
     batch_size = arg_batch_size
@@ -177,7 +188,7 @@ def main():
     
         if arg_nottest:
             for k in train_metrics:
-                train_metrics[k] /= len(train_loader)
+                train_metrics[k] /= len(training_dataloader)
         
         if accelerator.is_main_process:
 
@@ -215,7 +226,7 @@ def main():
             
             if arg_nottest:
                 for k in val_metrics:
-                    val_metrics[k] /= len(val_loader)
+                    val_metrics[k] /= len(validation_dataloader)
     
             if accelerator.is_main_process:
 
