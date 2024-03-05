@@ -13,6 +13,67 @@ import argparse
 import wandb
 from torch.nn import functional as F
 
+
+class GradientLoss(nn.Module):
+    def __init__(self, weight_gradient=0.5, tolerance=0.00):
+        super(GradientLoss, self).__init__()
+        # Weight of the gradient loss component
+        self.weight_gradient = weight_gradient
+        # Tolerance for comparing gradient magnitudes
+        self.tolerance = tolerance
+        # Standard CrossEntropy loss for classification tasks
+        self.cross_entropy_loss = nn.CrossEntropyLoss()
+
+    def forward(self, predictions, labels):
+        """
+        Calculate the custom loss as a combination of CrossEntropy loss and gradient matching loss.
+
+        :param predictions: The predictions from the model.
+        :param labels: The ground truth labels.
+        :param so: The source images.
+        :return: The combined loss value.
+        """
+        # Compute the standard CrossEntropy loss
+        ce_loss = self.cross_entropy_loss(predictions, labels)
+
+        # Calculate the match percentage and difference using the gradient comparison
+        _, diff = compare_gradients(labels, predictions, self.tolerance)
+
+        # Compute the gradient loss as the mean of the differences
+        gradient_loss = diff.mean()
+
+        # Combine the losses
+        combined_loss = ce_loss + self.weight_gradient * gradient_loss
+
+        return combined_loss, ce_loss, gradient_loss
+
+def calculate_gradient_magnitude(image):
+    """Calculate the gradient magnitude of an image using the Sobel operator."""
+    sobel_x = torch.tensor([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], dtype=torch.float32).view(1, 1, 3, 3).to(image.device)
+    sobel_y = torch.tensor([[-1, -2, -1], [0, 0, 0], [1, 2, 1]], dtype=torch.float32).view(1, 1, 3, 3).to(image.device)
+    
+    grad_x = F.conv2d(image.type(torch.float32), sobel_x, padding=1)
+    grad_y = F.conv2d(image.type(torch.float32), sobel_y, padding=1)
+    
+    gradient_magnitude = torch.sqrt(grad_x**2 + grad_y**2)
+    return gradient_magnitude
+
+def compare_gradients(so, predictions, tolerance=0.00):
+    """Compare the gradient magnitudes of SO and predictions, returning the percentage of matches."""
+    so_grad_mag = calculate_gradient_magnitude(so)
+    predictions_grad_mag = calculate_gradient_magnitude(predictions)
+    
+    # Compute the absolute difference between the two gradient magnitudes
+    diff = torch.abs(so_grad_mag - predictions_grad_mag)
+    
+    # Determine matches based on the tolerance threshold
+    matches = diff <= tolerance
+    
+    # Calculate the percentage of matches
+    match_percentage = matches.float().mean().item() * 100
+    
+    return match_percentage, diff
+
 def calculate_metrics(predicted, desired, num_classes=9):
     """
     Calculate accuracy, mean IoU and mean Dice coefficient for one-hot encoded predicted map 

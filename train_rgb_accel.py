@@ -147,7 +147,8 @@ def main():
     
     
     from torch.optim import Adam
-    criterion = nn.CrossEntropyLoss()
+    # criterion = nn.CrossEntropyLoss()
+    criterion = GradientLoss()
     optimizer = Adam(model.parameters(), lr=learning_rate)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
     
@@ -169,7 +170,7 @@ def main():
     
             # Forward pass
             outputs = model(dem, rgbs)
-            loss = criterion(outputs, so)
+            loss, ce_loss, gradient_loss = criterion(outputs, so)
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
             iou = mIOU(all_targets, all_predictions)
@@ -213,7 +214,7 @@ def main():
                 outputs = model(dem, rgbs)
                 all_predictions = accelerator.gather(outputs)
                 all_targets = accelerator.gather(so)
-                loss = criterion(outputs, so)
+                loss, ce_loss, gradient_loss = criterion(outputs, so)
                 iou = mIOU(all_targets, all_predictions)
                 val_metrics['Validation/iou'] += iou
     
