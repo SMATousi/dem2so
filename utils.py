@@ -33,14 +33,21 @@ class GradientLoss(nn.Module):
         :param so: The source images.
         :return: The combined loss value.
         """
+        diff_list = []
         # Compute the standard CrossEntropy loss
         ce_loss = self.cross_entropy_loss(predictions, labels)
 
         # Calculate the match percentage and difference using the gradient comparison
-        _, diff = compare_gradients(labels, predictions, self.tolerance)
+        for i in range(predictions.shape[1]):
+            _, diff = compare_gradients(labels[:,i,:,:], predictions[:,i,:,:], self.tolerance)
+            diff_list.append(diff.mean())
+
+        
+        diff_list = torch.FloatTensor(diff_list)
+        
 
         # Compute the gradient loss as the mean of the differences
-        gradient_loss = diff.mean()
+        gradient_loss = diff_list.mean()
 
         # Combine the losses
         combined_loss = ce_loss + self.weight_gradient * gradient_loss
