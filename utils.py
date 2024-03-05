@@ -60,8 +60,10 @@ def calculate_gradient_magnitude(image):
 
 def compare_gradients(so, predictions, tolerance=0.00):
     """Compare the gradient magnitudes of SO and predictions, returning the percentage of matches."""
+    pred = torch.softmax(predictions, dim=1)
+    pred = torch.argmax(pred, dim=1)
     so_grad_mag = calculate_gradient_magnitude(so)
-    predictions_grad_mag = calculate_gradient_magnitude(predictions)
+    predictions_grad_mag = calculate_gradient_magnitude(pred)
     
     # Compute the absolute difference between the two gradient magnitudes
     diff = torch.abs(so_grad_mag - predictions_grad_mag)
