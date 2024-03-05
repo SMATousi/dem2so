@@ -170,7 +170,7 @@ def main():
     
             # Forward pass
             outputs = model(dem, rgbs)
-            loss, ce_loss, gradient_loss = criterion(so, outputs)
+            loss, ce_loss, gradient_loss = criterion(outputs, so)
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
             iou = mIOU(all_targets, all_predictions)
@@ -214,7 +214,7 @@ def main():
                 outputs = model(dem, rgbs)
                 all_predictions = accelerator.gather(outputs)
                 all_targets = accelerator.gather(so)
-                loss, ce_loss, gradient_loss = criterion(so, outputs)
+                loss, ce_loss, gradient_loss = criterion(outputs, so)
                 iou = mIOU(all_targets, all_predictions)
                 val_metrics['Validation/iou'] += iou
     
