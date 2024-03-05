@@ -14,40 +14,47 @@ import wandb
 from torch.nn import functional as F
 
 
+
 class GradientLoss(nn.Module):
-    def __init__(self, weight_gradient=0.5, tolerance=0.00):
+    def __init__(self, weight_gradient=0.5, tolerance=0.00, weight_pixel=1.0):
         super(GradientLoss, self).__init__()
         # Weight of the gradient loss component
         self.weight_gradient = weight_gradient
         # Tolerance for comparing gradient magnitudes
         self.tolerance = tolerance
-        # Standard CrossEntropy loss for classification tasks
-        self.cross_entropy_loss = nn.CrossEntropyLoss()
+        # Weight of the pixel-wise loss component (e.g., L1 loss for image-to-image comparison)
+        self.weight_pixel = weight_pixel
+        self.pixel_loss = nn.CrossEntropyLoss()  # L1 loss for pixel-wise comparison
 
     def forward(self, predictions, labels):
         """
-        Calculate the custom loss as a combination of CrossEntropy loss and gradient matching loss.
+        Calculate the custom loss for image prediction tasks, focusing on pixel-wise accuracy and gradient similarity.
 
-        :param predictions: The predictions from the model.
-        :param labels: The ground truth labels.
-        :param so: The source images.
-        :return: The combined loss value.
+        :param predictions: The predicted images.
+        :param labels: The target images.
+        :return: The combined loss value, along with individual loss components for monitoring.
         """
-        # Compute the standard CrossEntropy loss
-        ce_loss = self.cross_entropy_loss(predictions, labels)
+        # Compute the pixel-wise loss between predictions and labels
+        pixel_loss = self.pixel_loss(predictions, labels)
 
-        # Calculate the match percentage and difference using the gradient comparison
+        # Compute the gradient magnitude for both predictions and labels
         pred = torch.softmax(predictions, dim=1)
         pred = torch.argmax(pred, dim=1)
-        _, diff = compare_gradients(labels, pred, self.tolerance)
 
-        # Compute the gradient loss as the mean of the differences
+        labels_grad_mag = calculate_gradient_magnitude(labels)
+        predictions_grad_mag = calculate_gradient_magnitude(pred)
+
+        # Compute the absolute difference between the two gradient magnitudes
+        diff = torch.abs(labels_grad_mag - predictions_grad_mag)
+
+        # Compute the mean of the differences as the gradient loss
         gradient_loss = diff.mean()
 
-        # Combine the losses
-        combined_loss = ce_loss + self.weight_gradient * gradient_loss
+        # Combine the losses with their respective weights
+        combined_loss = self.weight_pixel * pixel_loss + self.weight_gradient * gradient_loss
 
-        return combined_loss, ce_loss, gradient_loss
+        return combined_loss, pixel_loss, gradient_loss
+
 
 def calculate_gradient_magnitude(image):
     """Calculate the gradient magnitude of an image using the Sobel operator."""
