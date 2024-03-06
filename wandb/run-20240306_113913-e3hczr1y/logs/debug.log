@@ -78,3 +78,14 @@ config: {}
 2024-03-06 11:52:47,609 INFO    MainThread:2480967 [jupyter.py:save_ipynb():373] not saving jupyter notebook
 2024-03-06 11:52:47,609 INFO    MainThread:2480967 [wandb_init.py:_pause_backend():418] pausing backend
 2024-03-06 11:52:48,034 INFO    MainThread:2480967 [wandb_init.py:_resume_backend():423] resuming backend
+2024-03-06 11:58:43,760 INFO    MainThread:2480967 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-06 11:58:43,761 INFO    MainThread:2480967 [wandb_init.py:_pause_backend():418] pausing backend
+2024-03-06 11:58:45,925 INFO    MainThread:2480967 [wandb_init.py:_resume_backend():423] resuming backend
+2024-03-06 11:58:46,022 INFO    MainThread:2480967 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-06 11:58:46,022 INFO    MainThread:2480967 [wandb_init.py:_pause_backend():418] pausing backend
+2024-03-06 11:58:56,198 INFO    MainThread:2480967 [wandb_init.py:_resume_backend():423] resuming backend
+2024-03-06 11:58:56,273 INFO    MainThread:2480967 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-06 11:58:56,273 INFO    MainThread:2480967 [wandb_init.py:_pause_backend():418] pausing backend
+2024-03-06 12:00:35,514 INFO    MainThread:2480967 [wandb_init.py:_resume_backend():423] resuming backend
+2024-03-06 12:00:35,586 INFO    MainThread:2480967 [jupyter.py:save_ipynb():373] not saving jupyter notebook
+2024-03-06 12:00:35,586 INFO    MainThread:2480967 [wandb_init.py:_pause_backend():418] pausing backend
