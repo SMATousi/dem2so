@@ -57,6 +57,7 @@ class GradientLoss(nn.Module):
 
 
 def calculate_gradient_magnitude(image):
+    image = torch.unsqueeze(image, 1)
     """Calculate the gradient magnitude of an image using the Sobel operator."""
     sobel_x = torch.tensor([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]], dtype=torch.float32).view(1, 1, 3, 3).to(image.device)
     sobel_y = torch.tensor([[-1, -2, -1], [0, 0, 0], [1, 2, 1]], dtype=torch.float32).view(1, 1, 3, 3).to(image.device)
