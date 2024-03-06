@@ -148,7 +148,7 @@ def main():
     
     from torch.optim import Adam
     # criterion = nn.CrossEntropyLoss()
-    criterion = GradientLoss()
+    criterion = GradientLoss(weight_gradient=0.1, tolerance=0.00, weight_pixel=1.0)
     optimizer = Adam(model.parameters(), lr=learning_rate)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
     
