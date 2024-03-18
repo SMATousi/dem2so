@@ -45,7 +45,7 @@ class GradientLoss(nn.Module):
         predictions_grad_mag = calculate_gradient_magnitude(pred)
 
         # Compute the absolute difference between the two gradient magnitudes
-        diff = torch.abs(labels_grad_mag - predictions_grad_mag)
+        diff = torch.square(labels_grad_mag - predictions_grad_mag)
 
         # Compute the mean of the differences as the gradient loss
         gradient_loss = diff.mean()

@@ -1,1 +1,0 @@
-{"Train/iou": 0.1090796587876486, "_timestamp": 1705618396.0630298, "_runtime": 13.965179681777954, "_step": 99, "Train/Loss": 1.8931832313537598, "Validation/iou": 0.08089744340516233, "Validation/Loss": 1.9182307720184326, "_wandb": {"runtime": 13}}
