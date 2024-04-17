@@ -12,6 +12,7 @@ import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
 import imageio.v2 as imageio
+import rasterio
 
 
 class BasicDataset(Dataset):
@@ -200,6 +201,58 @@ class RGB_RasterTilesDataset(Dataset):
         return sample
     
 
+class RGB_RasterTilesDataset_Geo(Dataset):
+    def __init__(self, dem_dir, so_dir, rgb_dir, transform=None):
+        """
+        Custom dataset to load DEM, SO, and RGB tiles with their geospatial metadata.
+
+        :param dem_dir: Directory where DEM tiles are stored.
+        :param so_dir: Directory where SO tiles are stored.
+        :param rgb_dir: Directory where RGB tiles are stored.
+        :param transform: Optional transform to be applied on a sample.
+        """
+        self.dem_dir = dem_dir
+        self.so_dir = so_dir
+        self.rgb_dir = rgb_dir
+        self.transform = transform
+        self.tile_identifiers = [f.split('_')[-1].split('.')[0] for f in os.listdir(dem_dir) if 'dem_tile' in f]
+
+    def __len__(self):
+        return len(self.tile_identifiers)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+
+        tile_id = self.tile_identifiers[idx]
+        dem_file = os.path.join(self.dem_dir, f'dem_tile_{tile_id}.tif')
+        so_file = os.path.join(self.so_dir, f'so_tile_{tile_id}.tif')
+        rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_tile_{tile_id}.tif') for k in range(6)]
+
+        with rasterio.open(dem_file) as src:
+            dem_image = src.read(1)  # Read the first band
+            dem_meta = src.profile
+
+        with rasterio.open(so_file) as src:
+            so_image = src.read(1)
+            so_meta = src.profile
+
+        rgb_images = []
+        rgb_metas = []
+        for file in rgb_files:
+            with rasterio.open(file) as src:
+                rgb_images.append(src.read([1, 2, 3]))  # Read the RGB bands
+                rgb_metas.append(src.profile)
+
+        sample = {'DEM': dem_image, 'DEM_meta': dem_meta,
+                  'SO': so_image, 'SO_meta': so_meta,
+                  'RGB': rgb_images, 'RGB_meta': rgb_metas}
+
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+    
 class RGB_RasterTransform:
     """
     A custom transform class for raster data.
