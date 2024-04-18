@@ -203,18 +203,11 @@ class RGB_RasterTilesDataset(Dataset):
 
 class RGB_RasterTilesDataset_Geo(Dataset):
     def __init__(self, dem_dir, so_dir, rgb_dir, transform=None):
-        """
-        Custom dataset to load DEM, SO, and RGB tiles with their geospatial metadata.
-
-        :param dem_dir: Directory where DEM tiles are stored.
-        :param so_dir: Directory where SO tiles are stored.
-        :param rgb_dir: Directory where RGB tiles are stored.
-        :param transform: Optional transform to be applied on a sample.
-        """
         self.dem_dir = dem_dir
         self.so_dir = so_dir
         self.rgb_dir = rgb_dir
         self.transform = transform
+        # Assume all DEM, SO, and RGB files share the same tile identifiers
         self.tile_identifiers = [f.split('_')[-1].split('.')[0] for f in os.listdir(dem_dir) if 'dem_tile' in f]
 
     def __len__(self):
@@ -226,27 +219,35 @@ class RGB_RasterTilesDataset_Geo(Dataset):
 
         tile_id = self.tile_identifiers[idx]
         dem_file = os.path.join(self.dem_dir, f'dem_tile_{tile_id}.tif')
-        so_file = os.path.join(self.so_dir, f'so_tile_{tile_id}.tif')
+        so_file = os.path.join(self.so_dir, f'dem_tile_{tile_id}.tif')
         rgb_files = [os.path.join(self.rgb_dir, f'rgb{k}_tile_{tile_id}.tif') for k in range(6)]
 
+        # Prepare sample dictionary
+        sample = {}
+
+        # Read DEM file and extract the transform
         with rasterio.open(dem_file) as src:
             dem_image = src.read(1)  # Read the first band
-            dem_meta = src.profile
+            dem_transform = src.transform
+            sample['DEM'] = dem_image
+            sample['DEM_transform'] = dem_transform
 
+        # Read SO file and extract the transform
         with rasterio.open(so_file) as src:
             so_image = src.read(1)
-            so_meta = src.profile
+            so_transform = src.transform
+            sample['SO'] = so_image
+            sample['SO_transform'] = so_transform
 
+        # Read RGB files and extract their transforms
         rgb_images = []
-        rgb_metas = []
+        rgb_transforms = []
         for file in rgb_files:
             with rasterio.open(file) as src:
                 rgb_images.append(src.read([1, 2, 3]))  # Read the RGB bands
-                rgb_metas.append(src.profile)
-
-        sample = {'DEM': dem_image, 'DEM_meta': dem_meta,
-                  'SO': so_image, 'SO_meta': so_meta,
-                  'RGB': rgb_images, 'RGB_meta': rgb_metas}
+                rgb_transforms.append(src.transform)
+        sample['RGB'] = rgb_images
+        sample['RGB_transforms'] = rgb_transforms
 
         if self.transform:
             sample = self.transform(sample)
@@ -283,3 +284,37 @@ class RGB_RasterTransform:
         so = so.long()
 
         return {'DEM': dem, 'SO': so.squeeze(), 'RGB': rgb}
+    
+
+class RGB_RasterTransform_Geo:
+    """
+    A custom transform class for raster data.
+    """
+    def __init__(self):
+        pass
+
+    def __call__(self, sample):
+        dem, so, rgb = sample['DEM'], sample['SO'], sample['RGB']
+        dem_meta, so_meta, rgb_meta = sample['DEM_transform'], sample['SO_transform'], sample['RGB_transforms']
+
+        # Random horizontal flipping
+        # if torch.rand(1) > 0.5:
+        #     dem = TF.hflip(dem)
+        #     so = TF.hflip(so)
+
+        # # Random vertical flipping
+        # if torch.rand(1) > 0.5:
+        #     dem = TF.vflip(dem)
+        #     so = TF.vflip(so)
+
+        # Convert numpy arrays to tensors
+        dem = TF.to_tensor(dem)
+        so = TF.to_tensor(so)
+        rgb_images = [TF.to_tensor(image) for image in rgb]
+
+        dem = TF.normalize(dem, 318.90567, 16.467052)
+
+        so = so.long()
+
+        return {'DEM': dem, 'SO': so.squeeze(), 'RGB': rgb,
+                'DEM_transform' : dem_meta, 'SO_transform' : so_meta, 'RGB_transforms' : rgb_meta}
