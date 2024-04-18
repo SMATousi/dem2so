@@ -311,10 +311,12 @@ class RGB_RasterTransform_Geo:
         dem = TF.to_tensor(dem)
         so = TF.to_tensor(so)
         rgb_images = [TF.to_tensor(image) for image in rgb]
+        float_rgb_images = [image.float() for image in rgb_images]
+        # rgb_images = rgb_images.float()
 
         dem = TF.normalize(dem, 318.90567, 16.467052)
 
         so = so.long()
 
-        return {'DEM': dem, 'SO': so.squeeze(), 'RGB': rgb,
+        return {'DEM': dem, 'SO': so.squeeze(), 'RGB': float_rgb_images,
                 'DEM_transform' : dem_meta, 'SO_transform' : so_meta, 'RGB_transforms' : rgb_meta}
