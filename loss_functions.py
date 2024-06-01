@@ -1,27 +1,41 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .soft_skeleton import SoftSkeletonize
+from soft_skeleton import SoftSkeletonize
 import time
 import numpy
 import gudhi as gd
 from pylab import *
 
-class CustomLoss(nn.Module):
-    def __init__(self, alpha=0.01):
-        super(CustomLoss, self).__init__()
+class CE_CLDICE_Loss(nn.Module):
+    def __init__(self, alpha=0.01, ce_w=1 , cl_w = 1):
+        super(CE_CLDICE_Loss, self).__init__()
         self.alpha = alpha
-        self.mse_loss = nn.MSELoss()
+        self.ce_w = ce_w
+        self.cl_w = cl_w
+        self.ce_loss = nn.CrossEntropyLoss()
+        self.soft_dice_cldice = soft_dice_cldice(self.alpha)
 
     def forward(self, predictions, targets):
-        # Compute the Mean Squared Error (MSE) loss
-        mse_loss = self.mse_loss(predictions, targets)
         
-        # Compute the penalty term
-        penalty = torch.mean(torch.abs(predictions))
+        pred = F.softmax(predictions, dim=1)              
+        pred = torch.argmax(pred, dim=1).squeeze(1)
         
-        # Combine the MSE loss with the penalty term
-        loss = mse_loss + self.alpha * penalty
+        cldice_total_loss = 0
+        
+        for level in range(9):
+            
+            if torch.any(pred == level) or torch.any(targets == level):
+            
+                target_level = (targets == level).type(torch.FloatTensor)
+                pred_level = (pred == level).type(torch.FloatTensor)
+
+                target_level = target_level.unsqueeze(dim=1)
+                pred_level = pred_level.unsqueeze(dim=1)
+                
+                cldice_total_loss = cldice_total_loss + self.soft_dice_cldice(target_level,pred_level)
+
+        loss = self.ce_w * self.ce_loss(predictions,targets) + self.cl_w * cldice_total_loss
         
         return loss
 
