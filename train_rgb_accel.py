@@ -15,6 +15,7 @@ from accelerate.utils import DistributedDataParallelKwargs
 from model import *
 from dataset import *
 from utils import *
+from loss_functions import *
 
 
 
@@ -45,6 +46,8 @@ def main():
     parser.add_argument("--savingstep", type=int, default=100)
     parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--imagesize", type=int, default=256)
+    parser.add_argument("--alpha", type=int, default=1)
+    parser.add_argument("--beta", type=int, default=1)
     parser.add_argument("--threshold", type=float, default=1)
     parser.add_argument("--dropoutrate", type=float, default=0.5)
     parser.add_argument("--nottest", help="Enable verbose mode", action="store_true")
@@ -61,6 +64,9 @@ def main():
     arg_threshold = args.threshold
     arg_imagesize = args.imagesize
     arg_dropoutrate = args.dropoutrate
+    arg_alpha = args.alpha
+    arg_beta = args.beta
+
     
     if args.nottest:
         arg_nottest = True 
@@ -148,6 +154,8 @@ def main():
     
     from torch.optim import Adam
     # criterion = nn.CrossEntropyLoss()
+    cldice_criterion = CE_CLDICE_Loss(alpha=arg_alpha, beta=arg_beta)
+
     criterion = GradientLoss(weight_gradient=0.1, tolerance=0.00, weight_pixel=1.0)
     optimizer = Adam(model.parameters(), lr=learning_rate)
     scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
@@ -170,7 +178,9 @@ def main():
     
             # Forward pass
             outputs = model(dem, rgbs)
-            loss, ce_loss, gradient_loss = criterion(outputs, so)
+            # loss, ce_loss, gradient_loss = criterion(outputs, so)
+            loss = cldice_criterion(outputs, so)
+            
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
             iou = mIOU(all_targets, all_predictions)

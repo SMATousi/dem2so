@@ -8,11 +8,10 @@ import gudhi as gd
 from pylab import *
 
 class CE_CLDICE_Loss(nn.Module):
-    def __init__(self, alpha=0.01, ce_w=1 , cl_w = 1):
+    def __init__(self, alpha=0.01, beta=1):
         super(CE_CLDICE_Loss, self).__init__()
         self.alpha = alpha
-        self.ce_w = ce_w
-        self.cl_w = cl_w
+        self.beta = beta
         self.ce_loss = nn.CrossEntropyLoss()
         self.soft_dice_cldice = soft_dice_cldice(self.alpha)
 
@@ -35,7 +34,7 @@ class CE_CLDICE_Loss(nn.Module):
                 
                 cldice_total_loss = cldice_total_loss + self.soft_dice_cldice(target_level,pred_level)
 
-        loss = self.ce_w * self.ce_loss(predictions,targets) + self.cl_w * cldice_total_loss
+        loss = (1.0 - self.beta) * self.ce_loss(predictions,targets) + (self.beta) * cldice_total_loss
         
         return loss
 
