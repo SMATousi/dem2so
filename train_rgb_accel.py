@@ -19,7 +19,7 @@ from loss_functions import *
 
 
 
-random.seed(0)
+# random.seed(0)
 np.random.seed(0)
 torch.manual_seed(0)
 torch.backends.cudnn.deterministic = True
@@ -180,7 +180,7 @@ def main():
             outputs = model(dem, rgbs)
             # loss, ce_loss, gradient_loss = criterion(outputs, so)
             loss = cldice_criterion(outputs, so)
-            
+
             all_predictions = accelerator.gather(outputs)
             all_targets = accelerator.gather(so)
             iou = mIOU(all_targets, all_predictions)
