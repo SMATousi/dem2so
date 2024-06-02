@@ -262,7 +262,7 @@ class LightweightUnet(nn.Module):
     def forward(self, x):
         x = torch.relu(self.down(x))
         x = torch.relu(self.up(x))
-        x = self.out_current
+        x = self.out_conv(x)
 
 
 class ChainedUnets(nn.Module):
