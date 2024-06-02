@@ -60,7 +60,7 @@ class CE_CLDICE_Loss_optimized_multi_unet(nn.Module):
             cldice_total_loss = self.soft_dice_cldice(targets.unsqueeze(dim=1).type(torch.float32), pred.unsqueeze(dim=1).type(torch.float32))
 
         # Combine the CE loss and weighted CLDice loss
-        loss = (1.0 - self.beta) * self.ce_loss(predictions, targets) + (self.beta) * cldice_total_loss
+        loss = (1.0 - self.beta) * self.ce_loss(predictions, targets.type(torch.long)) + (self.beta) * cldice_total_loss
         
         return loss
     
