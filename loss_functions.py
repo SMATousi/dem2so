@@ -57,7 +57,7 @@ class CE_CLDICE_Loss_optimized_multi_unet(nn.Module):
         # for level in range(9):
         #     # Only calculate if either predicted or target level is present
         if torch.any(pred) or torch.any(targets):
-            cldice_total_loss = self.soft_dice_cldice(targets.unsqueeze(dim=1), pred.unsqueeze(dim=1))
+            cldice_total_loss = self.soft_dice_cldice(targets.unsqueeze(dim=1).type(torch.float32), pred.unsqueeze(dim=1).type(torch.float32))
 
         # Combine the CE loss and weighted CLDice loss
         loss = (1.0 - self.beta) * self.ce_loss(predictions, targets) + (self.beta) * cldice_total_loss
