@@ -154,7 +154,8 @@ def main():
     
     from torch.optim import Adam
     # criterion = nn.CrossEntropyLoss()
-    cldice_criterion = CE_CLDICE_Loss(alpha=arg_alpha, beta=arg_beta)
+    # cldice_criterion = CE_CLDICE_Loss(alpha=arg_alpha, beta=arg_beta)
+    cldice_criterion = CE_CLDICE_Loss_optimized(alpha=arg_alpha, beta=arg_beta)
 
     criterion = GradientLoss(weight_gradient=0.1, tolerance=0.00, weight_pixel=1.0)
     optimizer = Adam(model.parameters(), lr=learning_rate)
