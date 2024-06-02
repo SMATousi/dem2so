@@ -148,6 +148,8 @@ def main():
                          num_unets=9,
                          in_channels=3,  
                          out_channels=1)
+    optimizers = [optim.Adam(unet.parameters(), lr=1e-4) for unet in model.unets]
+    
     model = accelerator.prepare(model)
     # model = RGB_DEM_to_SO(resnet_output_size=(8, 8), 
     #                         fusion_output_size=(128, 128), 
@@ -165,7 +167,7 @@ def main():
 
     # criterion = GradientLoss(weight_gradient=0.1, tolerance=0.00, weight_pixel=1.0)
     # optimizer = Adam(model.parameters(), lr=learning_rate)
-    optimizers = [optim.Adam(unet.parameters(), lr=1e-4) for unet in model.unets]
+    
     optimizers = [accelerator.prepare(optimizer) for optimizer in optimizers]
     # scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=100, gamma=0.1)
     
@@ -182,6 +184,7 @@ def main():
         train_metrics = {'Train/iou': 0}
         
         for i, batch in enumerate(tqdm(training_dataloader)):
+
             dem = batch['DEM']
             so = batch['SO']
             rgbs = batch['RGB']
