@@ -41,7 +41,7 @@ class CE_CLDICE_Loss(nn.Module):
         self.alpha = alpha
         self.beta = beta
         self.ce_loss = nn.CrossEntropyLoss()
-        self.soft_dice_cldice = soft_dice_cldice(self.alpha)
+        self.soft_dice_cldice = soft_dice_cldice(alpha=alpha)
 
     def forward(self, predictions, targets):
         
