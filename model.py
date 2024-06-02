@@ -251,3 +251,49 @@ class RGB_DEM_to_SO(nn.Module):
         return so_output
 
 
+class LightweightUnet(nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(LightweightUnet, self).__init__()
+        # Define a simple U-Net-like structure
+        self.down = nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
+        self.up = nn.ConvTranspose2d(out_channels, out_channels, kernel_size=2, stride=2)
+        self.out_conv = nn.Conv2d(out_channels, out_channels, kernel_size=1)
+    
+    def forward(self, x):
+        x = torch.relu(self.down(x))
+        x = torch.relu(self.up(x))
+        x = self.out_current
+
+
+class ChainedUnets(nn.Module):
+    def __init__(self, 
+                 resnet_output_size, 
+                 fusion_output_size, 
+                 resnet_saved_model_path,
+                 num_unets, 
+                 in_channels=3, 
+                 out_channels=1):
+        
+        super(ChainedUnets, self).__init__()
+        self.resnet = ResNetFeatures(output_size=resnet_output_size, saved_model_path=resnet_saved_model_path)
+        self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
+        self.initial_unet = LightweightUnet(in_channels - 1, out_channels)
+        self.unets = nn.ModuleList([LightweightUnet(in_channels, out_channels) for _ in range(num_unets-1)])
+        self.out_channels = out_channels
+    
+    def forward(self, dem, rgbs):
+
+        features = [self.resnet(rgb) for rgb in rgbs]
+        features = torch.cat(features, dim=1)  # Concatenate features along the channel dimension
+        fused = self.fusion_net(features)
+        combined_input = torch.cat((dem, fused), dim=1)
+
+        outputs = []
+        input_x = combined_input
+        x = self.initial_unet(input_x)
+        outputs.append(x)
+        for i, unet in enumerate(self.unets):
+            # Detach x to cut off gradients flowing into earlier layers
+            x = unet(torch.cat([x.detach(), combined_input], dim=1))
+            outputs.append(x)
+        return outputs

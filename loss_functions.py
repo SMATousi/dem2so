@@ -35,6 +35,35 @@ class CE_CLDICE_Loss_optimized(nn.Module):
         
         return loss
     
+
+class CE_CLDICE_Loss_optimized_multi_unet(nn.Module):
+    def __init__(self, alpha=0.01, beta=1):
+        super(CE_CLDICE_Loss_optimized_multi_unet, self).__init__()
+        self.alpha = alpha
+        self.beta = beta
+        self.ce_loss = nn.CrossEntropyLoss()
+        self.soft_dice_cldice = soft_dice_cldice(self.alpha)
+
+    def forward(self, predictions, targets):
+        pred = F.softmax(predictions, dim=1)              
+        pred = torch.argmax(pred, dim=1)
+        
+        # Create a mask for each level, for both predictions and targets
+        # target_levels = (targets.unsqueeze(1) == torch.arange(9, device=targets.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)).type(torch.float32)
+        # pred_levels = (pred_classes.unsqueeze(1) == torch.arange(9, device=pred_classes.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)).type(torch.float32)
+        
+        # Applying soft_dice_cldice to each level
+        # cldice_total_loss = 0
+        # for level in range(9):
+        #     # Only calculate if either predicted or target level is present
+        if torch.any(pred) or torch.any(targets):
+            cldice_total_loss = self.soft_dice_cldice(targets.unsqueeze(dim=1), pred.unsqueeze(dim=1))
+
+        # Combine the CE loss and weighted CLDice loss
+        loss = (1.0 - self.beta) * self.ce_loss(predictions, targets) + (self.beta) * cldice_total_loss
+        
+        return loss
+    
 class CE_CLDICE_Loss(nn.Module):
     def __init__(self, alpha=0.01, beta=1):
         super(CE_CLDICE_Loss, self).__init__()
