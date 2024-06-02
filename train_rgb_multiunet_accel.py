@@ -192,7 +192,7 @@ def main():
             # Forward pass
             outputs = model(dem, rgbs)
             # loss, ce_loss, gradient_loss = criterion(outputs, so)
-            for unet, optimizer, output, ground_truth in zip(model.unets, optimizers, outputs, ground_truths):
+            for optimizer, output, ground_truth in zip(optimizers, outputs, ground_truths):
                 optimizer.zero_grad()
                 loss = cldice_criterion(output, ground_truth)
                 loss.backward()
