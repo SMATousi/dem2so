@@ -277,8 +277,8 @@ class ChainedUnets(nn.Module):
         super(ChainedUnets, self).__init__()
         self.resnet = ResNetFeatures(output_size=resnet_output_size, saved_model_path=resnet_saved_model_path)
         self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
-        self.initial_unet = LightweightUnet(in_channels - 1, out_channels)
-        self.unets = nn.ModuleList([LightweightUnet(in_channels, out_channels) for _ in range(num_unets-1)])
+        self.initial_unet = UNet_light(in_channels - 1, out_channels)
+        self.unets = nn.ModuleList([UNet_light(in_channels, out_channels) for _ in range(num_unets-1)])
         self.out_channels = out_channels
     
     def forward(self, dem, rgbs):
