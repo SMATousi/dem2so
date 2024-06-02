@@ -28,7 +28,7 @@ class CE_CLDICE_Loss_optimized(nn.Module):
         for level in range(9):
             # Only calculate if either predicted or target level is present
             if torch.any(pred_levels[:, level]) or torch.any(target_levels[:, level]):
-                cldice_total_loss += self.soft_dice_cldice(target_levels[:, level], pred_levels[:, level])
+                cldice_total_loss += self.soft_dice_cldice(target_levels[:, level].unsqueeze(dim=1), pred_levels[:, level].unsqueeze(dim=1))
 
         # Combine the CE loss and weighted CLDice loss
         loss = (1.0 - self.beta) * self.ce_loss(predictions, targets) + (self.beta) * cldice_total_loss
