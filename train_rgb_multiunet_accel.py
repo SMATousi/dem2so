@@ -149,7 +149,7 @@ def main():
                          in_channels=3,  
                          out_channels=1)
     optimizers = [optim.Adam(unet.parameters(), lr=1e-4) for unet in model.unets]
-    
+
     model = accelerator.prepare(model)
     # model = RGB_DEM_to_SO(resnet_output_size=(8, 8), 
     #                         fusion_output_size=(128, 128), 
@@ -188,7 +188,7 @@ def main():
             dem = batch['DEM']
             so = batch['SO']
             rgbs = batch['RGB']
-            ground_truths = [so==level.type(torch.float32) for level in range(9)]
+            ground_truths = [(so==level).type(torch.float32) for level in range(9)]
             # Forward pass
             outputs = model(dem, rgbs)
             # loss, ce_loss, gradient_loss = criterion(outputs, so)
