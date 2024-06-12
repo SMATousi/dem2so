@@ -297,7 +297,7 @@ class RGB_DEM_to_SO(nn.Module):
         self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
         self.unet = UNet_1(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
         self.unet_light = UNet_light(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
-        self.onet = BothNet(n_channels=2, n_classes=9)
+        self.onet = BothNet(in_channels=2, out_channels=9)
         self.model_choice = model_choice
 
     def forward(self, dem, rgbs):
