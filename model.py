@@ -291,29 +291,62 @@ class FusionNet(nn.Module):
 
 
 class RGB_DEM_to_SO(nn.Module):
-    def __init__(self, resnet_output_size, fusion_output_size, model_choice, resnet_saved_model_path, dropout_rate=0.5):
+    def __init__(self, resnet_output_size, 
+                 fusion_output_size, 
+                 model_choice, 
+                 resnet_saved_model_path,
+                 input_choice='RD', 
+                 dropout_rate=0.5,
+                 number_of_in_channels=2):
+        
         super(RGB_DEM_to_SO, self).__init__()
         self.resnet = ResNetFeatures(output_size=resnet_output_size, saved_model_path=resnet_saved_model_path)
         self.fusion_net = FusionNet(input_channels=6*2048, output_size=fusion_output_size)
-        self.unet = UNet_1(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
-        self.unet_light = UNet_light(n_channels=2, n_classes=9, dropout_rate=dropout_rate)
-        self.onet = BothNet(in_channels=2, out_channels=9)
+        self.unet = UNet_1(n_channels=number_of_in_channels, n_classes=9, dropout_rate=dropout_rate)
+        self.unet_light = UNet_light(n_channels=number_of_in_channels, n_classes=9, dropout_rate=dropout_rate)
+        self.onet = BothNet(in_channels=number_of_in_channels, out_channels=9)
         self.model_choice = model_choice
+        self.input_choice = input_choice
 
     def forward(self, dem, rgbs):
+
         # rgbs is a list of RGB images
         features = [self.resnet(rgb) for rgb in rgbs]
         features = torch.cat(features, dim=1)  # Concatenate features along the channel dimension
         fused = self.fusion_net(features)
 
-        # Concatenate DEM and fused features
-        combined_input = torch.cat((dem, fused), dim=1)
-        if self.model_choice == "Unet_1":
-            so_output = self.unet(combined_input)
-        if self.model_choice == "Unet_light":
-            so_output = self.unet_light(combined_input)
-        if self.model_choice == "Onet":
-            so_output = self.onet(combined_input)
+        if self.input_choice == 'RD':
+            
+            # Concatenate DEM and fused features
+            combined_input = torch.cat((dem, fused), dim=1)
+            if self.model_choice == "Unet_1":
+                so_output = self.unet(combined_input)
+            if self.model_choice == "Unet_light":
+                so_output = self.unet_light(combined_input)
+            if self.model_choice == "Onet":
+                so_output = self.onet(combined_input)
+        
+        if self.input_choice == 'D':
+
+            # DEM
+            combined_input = dem
+            if self.model_choice == "Unet_1":
+                so_output = self.unet(combined_input)
+            if self.model_choice == "Unet_light":
+                so_output = self.unet_light(combined_input)
+            if self.model_choice == "Onet":
+                so_output = self.onet(combined_input)
+        
+        if self.input_choice == 'R':
+
+            # RGB
+            combined_input = fused
+            if self.model_choice == "Unet_1":
+                so_output = self.unet(combined_input)
+            if self.model_choice == "Unet_light":
+                so_output = self.unet_light(combined_input)
+            if self.model_choice == "Onet":
+                so_output = self.onet(combined_input)
 
         return so_output
 
