@@ -241,7 +241,7 @@ class OutConv(nn.Module):
 class ResNetFeatures(nn.Module):
     def __init__(self, output_size, saved_model_path):
         super(ResNetFeatures, self).__init__()
-        resnet = models.resnet50(weights=None)
+        resnet = models.resnet50(pretrained=True)
         resnet.fc = torch.nn.Linear(2048,19)
 #         resnet.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
         # Load your pretrained weights here if you have them
@@ -264,7 +264,7 @@ class ResNetFeatures(nn.Module):
         state_dict = {k.replace("module.", ""): v for k,v in state_dict.items()}
         '''
         #args.start_epoch = 0
-        resnet.load_state_dict(state_dict, strict=False)
+        #resnet.load_state_dict(state_dict, strict=False)
 
         # Remove the fully connected layer and the average pooling layer
         self.features = nn.Sequential(*list(resnet.children())[:-2])
